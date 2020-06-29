@@ -1,0 +1,16 @@
+{
+  "name": "MMM-OnThisDay",
+  "version": "0.1.0",
+  "description": "MagicMirror module to display historical events.",
+  "author": "Nikolai Keist",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nkl-kst/MMM-OnThisDay.git"
+  },
+  "main": "MMM-OnThisDay.js",
+  "scripts": {},
+  "dependencies": {
+    "fast-xml-parser": "^3.17.4"
+  }
+}

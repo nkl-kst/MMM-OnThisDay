@@ -1,0 +1,40 @@
+/* Magic Mirror
+ * Module: MMM-OnThisDay
+ *
+ * By Nikolai Keist (github.com/nkl-kst)
+ * MIT Licensed.
+ */
+
+/* Hide all extra children except the list */
+.MMM-OnThisDay .mw-parser-output > :not(ul) {
+    display: none;
+}
+
+/* No list dots */
+.MMM-OnThisDay ul {
+    list-style: none;
+    padding-left: 0;
+    text-align: justify;
+}
+
+/* Space between list items */
+.MMM-OnThisDay li:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+/* Hide images, captions etc */
+.MMM-OnThisDay img,
+.MMM-OnThisDay .thumbcaption {
+    display: none;
+}
+
+/* Don't style links */
+.MMM-OnThisDay :link,
+.MMM-OnThisDay :link *,
+.MMM-OnThisDay b,
+.MMM-OnThisDay i {
+    color: inherit !important;
+    font-style: inherit;
+    font-weight: inherit;
+    text-decoration: inherit;
+}
