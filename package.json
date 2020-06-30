@@ -9,8 +9,27 @@
     "url": "git+https://github.com/nkl-kst/MMM-OnThisDay.git"
   },
   "main": "MMM-OnThisDay.js",
-  "scripts": {},
+  "scripts": {
+    "test": "nyc mocha test/unit --recursive"
+  },
   "dependencies": {
     "fast-xml-parser": "^3.17.4"
+  },
+  "devDependencies": {
+    "mocha": "^8.0.1",
+    "nyc": "^15.1.0"
+  },
+  "nyc": {
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "coverage",
+      "test",
+      "vagrant"
+    ],
+    "cache": true,
+    "all": true
   }
 }
