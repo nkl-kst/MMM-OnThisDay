@@ -135,8 +135,12 @@ Module.register('MMM-OnThisDay', {
         this.sendSocketNotification('LOAD_EVENTS', this.usedLanguage);
 
         // Schedule next load
+        this.scheduleRefresh();
+    },
+
+    scheduleRefresh: function() {
         setTimeout(() => {
             this.loadEvents();
         }, this.config.updateInterval * 1000)
-    },
+    }
 });

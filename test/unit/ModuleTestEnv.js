@@ -12,9 +12,6 @@ Module = {
         moduleDefinition.config.updateInterval = 0; // Update immediately in tests
         moduleDefinition.data = {};
 
-        // Inherited functions
-        moduleDefinition.updateDom = function () {};
-
         this.definitions[name] = moduleDefinition;
     },
 };

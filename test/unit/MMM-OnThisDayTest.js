@@ -5,13 +5,17 @@
  * MIT Licensed.
  */
 
-const assert = require('assert')
+const assert = require('assert');
+const sinon = require('sinon');
 const { newModule } = require('./ModuleTestEnv');
 
 describe('MMM-OnThisDay', () => {
 
     // Tested
     let module;
+
+    // Fake clock (don't run setTimeout calls)
+    let clock;
 
     beforeEach(() => {
 
@@ -22,6 +26,18 @@ describe('MMM-OnThisDay', () => {
         module.data = {};
         module.title = null;
         module.events = null;
+        module.config.updateInterval = 0;
+
+        // Fake inherited methods
+        module.updateDom = sinon.fake();
+        module.sendSocketNotification = sinon.fake();
+
+        // Fake clock
+        clock = sinon.useFakeTimers(0);
+    });
+
+    afterEach(() => {
+        sinon.restore();
     });
 
     describe('getStyles', () => {
@@ -127,7 +143,30 @@ describe('MMM-OnThisDay', () => {
     });
 
     describe('notificationReceived', () => {
-        // TODO
+
+        it('should do nothing on unknown notification', () => {
+
+            // Arrange
+            module.loadEvents = sinon.spy();
+
+            // Act
+            module.notificationReceived('UNKNOWN_NOTIFICATION');
+
+            // Assert
+            assert.ok(module.loadEvents.notCalled);
+        });
+
+        it('should load events on dom creation', () => {
+
+            // Arrange
+            module.loadEvents = sinon.spy();
+
+            // Act
+            module.notificationReceived('MODULE_DOM_CREATED');
+
+            // Assert
+            assert.ok(module.loadEvents.calledOnce);
+        });
     });
 
     describe('socketNotificationReceived', () => {
@@ -178,6 +217,61 @@ describe('MMM-OnThisDay', () => {
             // Assert
             assert.strictEqual(module.title, 'Test title');
             assert.strictEqual(module.events, 'Test events parsed from string');
+        });
+    });
+
+    describe('loadEvents', () => {
+
+        it('should send socket notification', () => {
+
+            // Act
+            module.loadEvents();
+
+            // Assert
+            module.sendSocketNotification.calledWith('LOAD_EVENTS', 'en');
+        });
+
+        it('should schedule refresh', () => {
+
+            // Arrange
+            module.scheduleRefresh = sinon.spy();
+
+            // Act
+            module.loadEvents();
+
+            // Assert
+            assert.ok(module.scheduleRefresh.calledOnce);
+        });
+    });
+
+    describe('scheduleRefresh', () => {
+
+        it('should not load events before update interval', () => {
+
+            // Arrange
+            module.config.updateInterval = 1;
+            module.loadEvents = sinon.spy();
+
+            // Act
+            module.scheduleRefresh();
+            clock.tick(999);
+
+            // Assert
+            assert.ok(module.loadEvents.notCalled);
+        });
+
+        it('should not load events on update interval', () => {
+
+            // Arrange
+            module.config.updateInterval = 1;
+            module.loadEvents = sinon.spy();
+
+            // Act
+            module.scheduleRefresh();
+            clock.tick(1000);
+
+            // Assert
+            assert.ok(module.loadEvents.calledOnce);
         });
     });
 });
