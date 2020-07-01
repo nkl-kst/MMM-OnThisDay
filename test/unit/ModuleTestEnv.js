@@ -1,19 +1,10 @@
 /* eslint no-global-assign: "off" */
 
+const sinon = require('sinon');
+
 // Mock module registration
 Module = {
-    definitions: {},
-
-    register: function(name, moduleDefinition) {
-
-        // Module properties
-        moduleDefinition.name = name;
-        moduleDefinition.config = moduleDefinition.defaults;
-        moduleDefinition.config.updateInterval = 0; // Update immediately in tests
-        moduleDefinition.data = {};
-
-        this.definitions[name] = moduleDefinition;
-    },
+    register: function() {},
 };
 
 // Mock config
@@ -26,7 +17,7 @@ Log = {
 };
 
 // Mock DOMParser
-global.DOMParser = class {
+DOMParser = class {
     parseFromString(str) {
         return {
             documentElement: {
@@ -36,10 +27,21 @@ global.DOMParser = class {
     }
 }
 
-// Register module
-require('../../../MMM-OnThisDay');
+// Load module definition
+const moduleDefinition = require('../../MMM-OnThisDay');
 
 // Export new module with function mocks/fakes
 module.exports.newModule = function() {
-    return Object.assign({}, Module.definitions['MMM-OnThisDay']);
+
+    // Create module
+    const module = Object.assign({}, moduleDefinition);
+    module.config = module.defaults;
+    module.config.updateInterval = 0;
+    module.data = {};
+
+    // Fake inherited methods
+    module.updateDom = sinon.fake();
+    module.sendSocketNotification = sinon.fake();
+
+    return module;
 };

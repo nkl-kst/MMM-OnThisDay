@@ -19,18 +19,8 @@ describe('MMM-OnThisDay', () => {
 
     beforeEach(() => {
 
-        // Register module
+        // Create module clone
         module = newModule();
-
-        // Reset test data
-        module.data = {};
-        module.title = null;
-        module.events = null;
-        module.config.updateInterval = 0;
-
-        // Fake inherited methods
-        module.updateDom = sinon.fake();
-        module.sendSocketNotification = sinon.fake();
 
         // Fake clock
         clock = sinon.useFakeTimers(0);

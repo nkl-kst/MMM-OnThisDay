@@ -5,9 +5,7 @@
  * MIT Licensed.
  */
 
-/* global Module, Log */
-
-Module.register('MMM-OnThisDay', {
+const moduleDefinition = {
 
     defaults: {
 
@@ -143,4 +141,13 @@ Module.register('MMM-OnThisDay', {
             this.loadEvents();
         }, this.config.updateInterval * 1000)
     }
-});
+};
+
+// Register module definition
+Module.register('MMM-OnThisDay', moduleDefinition);
+
+// Export module definition for tests
+/* istanbul ignore else */
+if (typeof module !== 'undefined') {
+    module.exports = moduleDefinition;
+}
