@@ -19,7 +19,7 @@ describe('MMM-OnThisDay', () => {
 
     beforeEach(() => {
 
-        // Create module clone
+        // Create module
         module = newModule();
 
         // Fake clock

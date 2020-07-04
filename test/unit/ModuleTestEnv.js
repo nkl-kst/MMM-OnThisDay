@@ -1,4 +1,9 @@
-/* eslint no-global-assign: "off" */
+/* Magic Mirror
+ * Module: MMM-OnThisDay
+ *
+ * By Nikolai Keist (github.com/nkl-kst)
+ * MIT Licensed.
+ */
 
 const sinon = require('sinon');
 
