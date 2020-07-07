@@ -16,8 +16,8 @@ const NodeHelperFake = {
 };
 
 // Mock data service
-const EventServiceFake = {
-    getXml: function(language) {
+class EventServiceFake {
+    getXml(language) {
         return `
             <rss>
                 <channel>
@@ -28,8 +28,8 @@ const EventServiceFake = {
                     </item>
                 </channel>
             </rss>`;
-    },
-};
+    }
+}
 
 // Mock proxy logger
 const LoggerProxyFake = {

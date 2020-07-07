@@ -29,7 +29,8 @@ module.exports = NodeHelper.create({
         Log.log('Load events ...');
 
         // Get xml
-        const xml = await EventService.getXml(language);
+        const eventService = new EventService();
+        const xml = await eventService.getXml(language);
 
         // Return parsed data
         return this.parseEvents(xml);

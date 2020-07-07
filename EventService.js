@@ -10,59 +10,66 @@ const https = require('https');
 /**
  * Service object to fetch XML data from Wikipedia.
  */
-const EventService = {
+class EventService {
 
     /*
      * ### Instance ###
      */
-    _xml: '',
+    _xml = '';
+    _resolve = null;
+    _reject = null;
 
     /*
      * ### Listener ###
      */
-    _onData: function(chunk) {
+    _onData(chunk) {
         this._xml += chunk;
-    },
+    }
 
-    _onError: function(reject, error) {
-        reject(error);
-    },
+    _onError(error) {
+        this._reject(error);
+    }
 
-    _onEnd: function(resolve) {
-        resolve(this._xml);
-    },
+    _onEnd() {
+        this._resolve(this._xml);
+    }
 
-    _onResponse: function(resolve, reject, response) {
+    _onResponse(response) {
 
         // Response listeners
         response
             .setEncoding('utf8')
             .on('data', chunk => this._onData(chunk))
-            .on('error', error => this._onError(reject, error))
-            .on('timeout', error => this._onError(reject, error))
-            .on('end', () => this._onEnd(resolve));
-    },
+            .on('error', error => this._onError(error))
+            .on('timeout', error => this._onError(error))
+            .on('end', () => this._onEnd());
+    }
 
-    _promiseExecutor: function(resolve, reject, language) {
-
-        // Reset data
-        this._xml = '';
+    _promiseExecutor(language) {
 
         // Wiki URL
         const url = `https://${language}.wikipedia.org/w/api.php?action=featuredfeed&feed=onthisday`;
 
         // Request data
-        https.get(url, response => this._onResponse(resolve, reject, response));
-    },
+        https.get(url, response => this._onResponse(response));
+    }
 
     /*
-     * ### API ###
+     * ### Public API ###
      */
-    getXml: async function(language) {
+    async getXml(language) {
 
         // Create and return promise
-        return new Promise((resolve, reject) => this._promiseExecutor(resolve, reject, language));
-    },
-};
+        return new Promise((resolve, reject) => {
+
+            // Internal state
+            this._resolve = resolve;
+            this._reject = reject;
+
+            // Execute
+            this._promiseExecutor(language)
+        });
+    }
+}
 
 module.exports = EventService;

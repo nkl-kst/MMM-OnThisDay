@@ -10,11 +10,12 @@ const assert = require('assert');
 const sinon = require('sinon');
 
 // Mock callbacks
-const resolveFake = sinon.fake();
-const rejectFake = sinon.fake();
 const responseFake = {
     setEncoding: sinon.fake(() => { return responseFake }),
-    on: sinon.fake(() => { return responseFake }),
+    on: sinon.fake((event, callback) => {
+        callback();
+        return responseFake
+    }),
 };
 
 // Mock HTTPS
@@ -24,13 +25,18 @@ const HttpsFake = {
     }),
 };
 
+const EventService = proxyquire('../../EventService', { https: HttpsFake });
+
 describe('EventService', () => {
 
     // Tested
     let service;
 
     beforeEach(() => {
-        service = proxyquire('../../EventService', { https: HttpsFake });
+        service = new EventService();
+
+        service._resolve = sinon.spy();
+        service._reject = sinon.spy();
     });
 
     afterEach(() => {
@@ -55,11 +61,10 @@ describe('EventService', () => {
         it('should reject with error', () => {
 
             // Act
-            service._onError(rejectFake, 'test error');
+            service._onError('test error');
 
             // Assert
-            assert.ok(rejectFake.calledOnce);
-            assert.ok(rejectFake.calledWith('test error'));
+            assert.ok(service._reject.calledOnceWith('test error'));
         });
     });
 
@@ -69,11 +74,10 @@ describe('EventService', () => {
 
             // Act
             service._onData('test xml');
-            service._onEnd(resolveFake);
+            service._onEnd();
 
             // Assert
-            assert.ok(resolveFake.calledOnce);
-            assert.ok(resolveFake.calledWith('test xml'));
+            assert.ok(service._resolve.calledOnceWith('test xml'));
         });
     });
 
@@ -82,7 +86,7 @@ describe('EventService', () => {
         it('should set all listeners', () => {
 
             // Act
-            service._onResponse(resolveFake, rejectFake, responseFake);
+            service._onResponse(responseFake);
 
             // Assert
             assert.ok(responseFake.setEncoding.calledOnceWith('utf8'));
@@ -102,19 +106,34 @@ describe('EventService', () => {
             service._onResponse = sinon.spy();
 
             // Act
-            service._promiseExecutor(resolveFake, rejectFake, 'en');
+            service._promiseExecutor('en');
 
             // Assert
             assert.ok(HttpsFake.get.calledOnceWith('https://en.wikipedia.org/w/api.php?action=featuredfeed&feed=onthisday'));
-            assert.ok(service._onResponse.calledOnceWith(resolveFake, rejectFake, responseFake));
+            assert.ok(service._onResponse.calledOnceWith(responseFake));
         });
     });
 
     describe('getXml', () => {
 
-        it('should return the xml', async () => {
+        it('should return xml data', (done) => {
 
-            // TODO
+            // Arrange (no callbacks here)
+            responseFake.on = sinon.fake(() => {
+                return responseFake
+            });
+
+            // Act
+            service.getXml().then(xml => {
+
+                // Assert
+                assert.strictEqual(xml, 'test xml');
+                done();
+            });
+
+            // Act #2 (resolve promise)
+            service._onData('test xml');
+            service._onEnd();
         });
     });
 });
