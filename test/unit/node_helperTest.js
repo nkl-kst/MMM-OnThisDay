@@ -7,7 +7,7 @@
 
 const assert = require('assert');
 const sinon = require('sinon');
-const { newHelper } = require('./HelperTestEnv');
+const newNodeHelper = require('../env/HelperTestEnv');
 
 describe('node_helper', () => {
 
@@ -17,7 +17,7 @@ describe('node_helper', () => {
     beforeEach(() => {
 
         // Create helper
-        helper = newHelper();
+        helper = newNodeHelper();
     });
 
     afterEach(() => {
@@ -26,19 +26,37 @@ describe('node_helper', () => {
 
     describe('socketNotificationReceived', () => {
 
-        it('should do nothing on unknown notification', () => {
+        it('should do nothing on unknown notification', async () => {
 
             // Act
-            helper.socketNotificationReceived();
+            await helper.socketNotificationReceived('UNKNOWN_NOTIFICATION');
 
             // Assert
             assert.ok(helper.sendSocketNotification.notCalled);
+        });
+
+        it('should send socket notification with title and events on LOAD_EVENTS notification', async () => {
+
+            // Act
+            await helper.socketNotificationReceived('LOAD_EVENTS', 'en');
+
+            // Assert
+            assert.ok(helper.sendSocketNotification.calledOnce);
+            assert.ok(helper.sendSocketNotification.calledWith(
+                'EVENTS_LOADED', { title: 'test title for en', events: 'test events for en' }));
         });
     });
 
     describe('loadEvents', () => {
 
-        // TODO: Use sinon https fake
+        it('should return loaded and parsed xml data', async () => {
+
+            // Act
+            const events = await helper.loadEvents('en');
+
+            // Assert
+            assert.deepStrictEqual(events, { title: 'test title for en', events: 'test events for en' });
+        });
     });
 
     describe('parseEvents', () => {

@@ -36,7 +36,7 @@ DOMParser = class {
 const moduleDefinition = require('../../MMM-OnThisDay');
 
 // Export new module with function mocks/fakes
-module.exports.newModule = function() {
+module.exports = function() {
 
     // Create module
     const module = Object.assign({}, moduleDefinition);

@@ -7,7 +7,7 @@
 
 const assert = require('assert');
 const sinon = require('sinon');
-const { newModule } = require('./ModuleTestEnv');
+const newModule = require('../env/ModuleTestEnv');
 
 describe('MMM-OnThisDay', () => {
 

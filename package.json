@@ -30,7 +30,7 @@
       "coverage",
       "test",
       "vagrant",
-      "ProxyLogger.js"
+      "LoggerProxy.js"
     ],
     "cache": true,
     "all": true

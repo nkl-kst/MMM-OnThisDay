@@ -6,8 +6,8 @@
  */
 
 const NodeHelper = require('node_helper');
-const Log = require('./ProxyLogger');
-const https = require('https');
+const EventService = require('./EventService');
+const Log = require('./LoggerProxy');
 const xmlParser = require('fast-xml-parser');
 
 module.exports = NodeHelper.create({
@@ -28,36 +28,11 @@ module.exports = NodeHelper.create({
     loadEvents: async function(language) {
         Log.log('Load events ...');
 
-        return new Promise((resolve, reject) => {
+        // Get xml
+        const xml = await EventService.getXml(language);
 
-            // Request wiki data
-            const url = `https://${language}.wikipedia.org/w/api.php?action=featuredfeed&feed=onthisday`;
-            https.get(url, (response) => {
-                response.setEncoding('utf8');
-                let xml = '';
-
-                // Concat data chunk
-                response.on('data', (chunk) => {
-                    xml += chunk;
-                });
-
-                // Error
-                response.on('error', (error) => {
-                    reject(error);
-                });
-
-                // Timeout
-                response.on('timeout', (error) => {
-                    reject(error);
-                });
-
-                // Response complete, parse full xml
-                response.on('end', () => {
-                    const data = this.parseEvents(xml);
-                    resolve(data);
-                });
-            });
-        });
+        // Return parsed data
+        return this.parseEvents(xml);
     },
 
     parseEvents: function(xml) {
@@ -82,5 +57,4 @@ module.exports = NodeHelper.create({
             events: item.description,
         };
     },
-
 });
