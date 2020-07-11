@@ -10,7 +10,8 @@
   },
   "main": "MMM-OnThisDay.js",
   "scripts": {
-    "test": "nyc mocha test/unit --recursive"
+    "test": "nyc mocha test/unit --recursive",
+    "test-functional": "mocha test/functional --recursive"
   },
   "dependencies": {
     "fast-xml-parser": "^3.17.4"
