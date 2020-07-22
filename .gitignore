@@ -1,0 +1,6 @@
+.idea
+.nyc_output
+.vagrant
+coverage
+node_modules
+package-lock.json

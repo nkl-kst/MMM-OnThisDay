@@ -1,0 +1,24 @@
+{#
+ # Magic Mirror
+ # Module: MMM-OnThisDay
+ #
+ # By Nikolai Keist (github.com/nkl-kst)
+ # MIT Licensed.
+ #}
+
+{# Wrapper #}
+<div class="{{ config.textSize }}" style="max-width: {{ config.maxWidth }};">
+
+    {% if not events %}
+
+        {# No data #}
+        {{ 'TEXT_NODATA' | translate }}
+
+    {% else %}
+
+        {# Data loaded #}
+        {{ events | safe }}
+
+    {% endif %}
+
+</div>
