@@ -1,5 +1,6 @@
 # MMM-RBB-Weather
 
+![example workflow name](https://github.com/nkl-kst/MMM-OnThisDay/workflows/CI/badge.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://choosealicense.com/licenses/mit)
 
 This is a module for the awesome [MagicMirror²](https://github.com/MichMich/MagicMirror/). It displays historical events 
@@ -108,17 +109,8 @@ vagrant up
 To run all unit tests just fire this command in the module folder
 
 ```
-# Install also dev dependencies
-npm install
-
 # Run tests
 npm test
-```
-
-You can also check if RBB endpoints are available and still providing correct data
-
-```
-npm run test-int
 ```
 
 ## License: MIT
