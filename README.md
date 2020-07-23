@@ -1,4 +1,4 @@
-# MMM-RBB-Weather
+# MMM-OnThisDay
 
 ![example workflow name](https://github.com/nkl-kst/MMM-OnThisDay/workflows/CI/badge.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://choosealicense.com/licenses/mit)
