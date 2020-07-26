@@ -1,6 +1,6 @@
 {
   "name": "MMM-OnThisDay",
-  "version": "0.1.0",
+  "version": "0.1.1-dev",
   "description": "MagicMirror module to display historical events.",
   "author": "Nikolai Keist",
   "license": "MIT",
@@ -14,7 +14,7 @@
     "test-functional": "mocha test/functional --recursive"
   },
   "dependencies": {
-    "fast-xml-parser": "^3.17.4"
+    "jsdom": "^16.3.0"
   },
   "devDependencies": {
     "mocha": "^8.0.1",
