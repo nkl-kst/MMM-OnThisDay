@@ -21,10 +21,9 @@ const moduleDefinition = {
     requiresVersion: '2.1.0', // Required version of MagicMirror
 
     /**
-     * Available languages, means that there is data to fetch for the node_helper at
-     * https://${language}.wikipedia.org/w/api.php?action=featuredfeed&feed=onthisday
+     * Available languages.
      */
-    availableLanguages: ['en', 'de'],
+    availableLanguages: ['en', 'de', 'fr'],
     usedLanguage: 'en', // Fallback
 
     /**
@@ -52,6 +51,7 @@ const moduleDefinition = {
         return {
             en: 'translation/en.json',
             de: 'translation/de.json',
+            //fr: 'TODO'
         }
     },
 
@@ -112,13 +112,9 @@ const moduleDefinition = {
                 return;
             }
 
-            // Set title
+            // Set content
             this.title = payload.title;
-
-            // Unescape
-            const domParser = new DOMParser();
-            const doc = domParser.parseFromString(payload.events, 'text/html');
-            this.events = doc.documentElement.textContent;
+            this.events = payload.events;
 
             // Update module
             Log.info('Update DOM with new title and events ...');

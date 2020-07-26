@@ -5,7 +5,7 @@
  * MIT Licensed.
  */
 
-const https = require('https');
+const { https } = require('follow-redirects');
 
 /**
  * Service object to fetch XML data from Wikipedia.
@@ -15,7 +15,7 @@ class EventService {
     /*
      * ### Instance ###
      */
-    _xml = '';
+    _html = '';
     _resolve = null;
     _reject = null;
 
@@ -23,7 +23,7 @@ class EventService {
      * ### Listener ###
      */
     _onData(chunk) {
-        this._xml += chunk;
+        this._html += chunk;
     }
 
     _onError(error) {
@@ -31,7 +31,7 @@ class EventService {
     }
 
     _onEnd() {
-        this._resolve(this._xml);
+        this._resolve(this._html);
     }
 
     _onResponse(response) {
@@ -48,7 +48,7 @@ class EventService {
     _promiseExecutor(language) {
 
         // Wiki URL
-        const url = `https://${language}.wikipedia.org/w/api.php?action=featuredfeed&feed=onthisday`;
+        const url = `https://${language}.wikipedia.org`;
 
         // Request data
         https.get(url, response => this._onResponse(response));
@@ -57,7 +57,7 @@ class EventService {
     /*
      * ### Public API ###
      */
-    async getXml(language) {
+    async getHtml(language) {
 
         // Create and return promise
         return new Promise((resolve, reject) => {
