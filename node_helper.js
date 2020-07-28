@@ -6,25 +6,10 @@
  */
 
 const NodeHelper = require('node_helper');
-const EventService = require('./EventService');
 const { JSDOM } = require('jsdom');
+const EventService = require('./EventService');
 const Log = require('./LoggerProxy');
-
-// CSS selector to find event list on language specific Wikipedia main site
-const LANGUAGE_SPECIFIC_EVENT_SELECTOR = {
-    en: {
-        title: '#mp-otd > p',
-        events: '#mp-otd > ul'
-    },
-    de: {
-        title: '#ereignisse > .hauptseite-box-title',
-        events: '#ereignisse > .hauptseite-box-content > ul:first-of-type'
-    },
-    fr: {
-        title: '.portail-droite > .accueil_2017_cadre:nth-child(2) .mw-headline',
-        events: '.portail-droite > .accueil_2017_cadre:nth-child(2) > ul'
-    },
-};
+const WIKI_CSS_SELECTORS = require('./WikiCssSelectors');
 
 module.exports = NodeHelper.create({
 
@@ -60,11 +45,11 @@ module.exports = NodeHelper.create({
         const document = dom.window.document;
 
         // Get title
-        const titleSelector = LANGUAGE_SPECIFIC_EVENT_SELECTOR[language].title;
+        const titleSelector = WIKI_CSS_SELECTORS[language].title;
         const title = document.querySelector(titleSelector);
 
         // Get events
-        const eventsSelector = LANGUAGE_SPECIFIC_EVENT_SELECTOR[language].events;
+        const eventsSelector = WIKI_CSS_SELECTORS[language].events;
         const events = document.querySelector(eventsSelector);
 
         // Check data

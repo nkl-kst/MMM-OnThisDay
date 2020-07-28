@@ -32,7 +32,8 @@
       "coverage",
       "test",
       "vagrant",
-      "LoggerProxy.js"
+      "LoggerProxy.js",
+      "WikiCssSelectors.js"
     ],
     "cache": true,
     "all": true
