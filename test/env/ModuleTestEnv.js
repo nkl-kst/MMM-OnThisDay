@@ -21,17 +21,6 @@ Log = {
     warn: function() {},
 };
 
-// Mock DOMParser
-DOMParser = class {
-    parseFromString(str) {
-        return {
-            documentElement: {
-                textContent: `${str} parsed from string`,
-            },
-        };
-    }
-}
-
 // Load module definition
 const moduleDefinition = require('../../MMM-OnThisDay');
 

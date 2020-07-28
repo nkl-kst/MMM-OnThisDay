@@ -52,7 +52,7 @@ module.exports = NodeHelper.create({
         return this.parseEvents(html, language);
     },
 
-    parseEvents: function(html, language) {
+    parseEvents: function(html, language = 'en') {
         Log.log('Parse HTML data ...');
 
         // Create dom

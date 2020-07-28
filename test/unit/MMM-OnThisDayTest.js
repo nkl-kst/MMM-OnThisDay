@@ -206,7 +206,7 @@ describe('MMM-OnThisDay', () => {
 
             // Assert
             assert.strictEqual(module.title, 'Test title');
-            assert.strictEqual(module.events, 'Test events parsed from string');
+            assert.strictEqual(module.events, 'Test events');
         });
     });
 

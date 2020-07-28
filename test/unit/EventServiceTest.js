@@ -25,7 +25,7 @@ const HttpsFake = {
     }),
 };
 
-const EventService = proxyquire('../../EventService', { https: HttpsFake });
+const EventService = proxyquire('../../EventService', { 'follow-redirects': { https: HttpsFake } });
 
 describe('EventService', () => {
 
@@ -52,7 +52,7 @@ describe('EventService', () => {
             service._onData(' chunk');
 
             // Assert
-            assert.strictEqual(service._xml, 'test chunk');
+            assert.strictEqual(service._html, 'test chunk');
         });
     });
 
@@ -109,14 +109,14 @@ describe('EventService', () => {
             service._promiseExecutor('en');
 
             // Assert
-            assert.ok(HttpsFake.get.calledOnceWith('https://en.wikipedia.org/w/api.php?action=featuredfeed&feed=onthisday'));
+            assert.ok(HttpsFake.get.calledOnceWith('https://en.wikipedia.org'));
             assert.ok(service._onResponse.calledOnceWith(responseFake));
         });
     });
 
-    describe('getXml', () => {
+    describe('getHtml', () => {
 
-        it('should return xml data', (done) => {
+        it('should return html data', (done) => {
 
             // Arrange (no callbacks here)
             responseFake.on = sinon.fake(() => {
@@ -124,15 +124,15 @@ describe('EventService', () => {
             });
 
             // Act
-            service.getXml().then(xml => {
+            service.getHtml().then(html => {
 
                 // Assert
-                assert.strictEqual(xml, 'test xml');
+                assert.strictEqual(html, 'test html');
                 done();
             });
 
             // Act #2 (resolve promise)
-            service._onData('test xml');
+            service._onData('test html');
             service._onEnd();
         });
     });
