@@ -21,9 +21,8 @@ const moduleDefinition = {
     requiresVersion: '2.1.0', // Required version of MagicMirror
 
     /**
-     * Available languages.
+     * Used language.
      */
-    availableLanguages: ['en', 'de', 'fr'],
     usedLanguage: 'en', // Fallback
 
     /**
@@ -35,6 +34,17 @@ const moduleDefinition = {
      * Events as raw HTML from Wikipedia.
      */
     events: null,
+
+    /**
+     * Module scripts.
+     *
+     * @returns {[string]}
+     */
+    getScripts: function() {
+        return [
+            'WikiCssSelectors.js',
+        ]
+    },
 
     /**
      * Modules styles.
@@ -84,7 +94,7 @@ const moduleDefinition = {
         Log.info('MMM-OnThisDay starting...');
 
         // Check languages
-        if (this.availableLanguages.includes(config.language)) {
+        if (WIKI_CSS_SELECTORS[config.language]) {
             this.usedLanguage = config.language;
         }
         Log.info(`Using language ${this.usedLanguage}.`);

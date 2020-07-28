@@ -5,7 +5,7 @@
  * MIT Licensed.
  */
 
-const SELECTORS = {
+const WIKI_CSS_SELECTORS = {
 
     en: {
         title: '#mp-otd > p',
@@ -25,5 +25,5 @@ const SELECTORS = {
 
 // Export module definition for node_helper
 if (typeof module !== 'undefined') {
-    module.exports = SELECTORS;
+    module.exports = WIKI_CSS_SELECTORS;
 }
