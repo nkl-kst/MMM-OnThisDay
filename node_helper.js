@@ -6,9 +6,10 @@
  */
 
 const NodeHelper = require('node_helper');
+const { JSDOM } = require('jsdom');
 const EventService = require('./EventService');
 const Log = require('./LoggerProxy');
-const xmlParser = require('fast-xml-parser');
+const WIKI_CSS_SELECTORS = require('./WikiCssSelectors');
 
 module.exports = NodeHelper.create({
 
@@ -28,34 +29,38 @@ module.exports = NodeHelper.create({
     loadEvents: async function(language) {
         Log.log('Load events ...');
 
-        // Get xml
+        // Get HTML
         const eventService = new EventService();
-        const xml = await eventService.getXml(language);
+        const html = await eventService.getHtml(language);
 
         // Return parsed data
-        return this.parseEvents(xml);
+        return this.parseEvents(html, language);
     },
 
-    parseEvents: function(xml) {
-        Log.log('Parse XML data ...');
+    parseEvents: function(html, language = 'en') {
+        Log.log('Parse HTML data ...');
 
-        // Parse XML data to json
-        const json = xmlParser.parse(xml);
+        // Create dom
+        const dom = new JSDOM(html);
+        const document = dom.window.document;
+
+        // Get title
+        const titleSelector = WIKI_CSS_SELECTORS[language].title;
+        const title = document.querySelector(titleSelector);
+
+        // Get events
+        const eventsSelector = WIKI_CSS_SELECTORS[language].events;
+        const events = document.querySelector(eventsSelector);
 
         // Check data
-        if (!json || !json.rss || !json.rss.channel || !json.rss.channel.item) {
-            Log.log('Could not parse XML.')
+        if (!events) {
+            Log.log('Could not find events in HTML.')
             return {};
         }
 
-        // Get last item
-        const items = json.rss.channel.item
-        const itemsCount = items.length;
-        const item = items[itemsCount - 1];
-
         return {
-            title: item.title,
-            events: item.description,
+            title: title ? title.innerHTML : null,
+            events: events.outerHTML,
         };
     },
 });

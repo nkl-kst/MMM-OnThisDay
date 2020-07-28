@@ -21,19 +21,11 @@ Log = {
     warn: function() {},
 };
 
-// Mock DOMParser
-DOMParser = class {
-    parseFromString(str) {
-        return {
-            documentElement: {
-                textContent: `${str} parsed from string`,
-            },
-        };
-    }
-}
-
 // Load module definition
 const moduleDefinition = require('../../MMM-OnThisDay');
+
+// Load Wiki CSS selectors
+WIKI_CSS_SELECTORS = require('../../WikiCssSelectors');
 
 // Export new module with function mocks/fakes
 module.exports = function() {

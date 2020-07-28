@@ -89,6 +89,7 @@ support the used language.
 
 Currently supported languages:
 - English
+- French
 - German
 
 ## Problems

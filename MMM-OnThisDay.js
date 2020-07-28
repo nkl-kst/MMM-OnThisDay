@@ -21,10 +21,8 @@ const moduleDefinition = {
     requiresVersion: '2.1.0', // Required version of MagicMirror
 
     /**
-     * Available languages, means that there is data to fetch for the node_helper at
-     * https://${language}.wikipedia.org/w/api.php?action=featuredfeed&feed=onthisday
+     * Used language.
      */
-    availableLanguages: ['en', 'de'],
     usedLanguage: 'en', // Fallback
 
     /**
@@ -36,6 +34,17 @@ const moduleDefinition = {
      * Events as raw HTML from Wikipedia.
      */
     events: null,
+
+    /**
+     * Module scripts.
+     *
+     * @returns {[string]}
+     */
+    getScripts: function() {
+        return [
+            'WikiCssSelectors.js',
+        ]
+    },
 
     /**
      * Modules styles.
@@ -52,6 +61,7 @@ const moduleDefinition = {
         return {
             en: 'translation/en.json',
             de: 'translation/de.json',
+            fr: 'translation/fr.json',
         }
     },
 
@@ -84,7 +94,7 @@ const moduleDefinition = {
         Log.info('MMM-OnThisDay starting...');
 
         // Check languages
-        if (this.availableLanguages.includes(config.language)) {
+        if (WIKI_CSS_SELECTORS[config.language]) {
             this.usedLanguage = config.language;
         }
         Log.info(`Using language ${this.usedLanguage}.`);
@@ -112,13 +122,9 @@ const moduleDefinition = {
                 return;
             }
 
-            // Set title
+            // Set content
             this.title = payload.title;
-
-            // Unescape
-            const domParser = new DOMParser();
-            const doc = domParser.parseFromString(payload.events, 'text/html');
-            this.events = doc.documentElement.textContent;
+            this.events = payload.events;
 
             // Update module
             Log.info('Update DOM with new title and events ...');

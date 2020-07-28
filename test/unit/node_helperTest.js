@@ -43,19 +43,19 @@ describe('node_helper', () => {
             // Assert
             assert.ok(helper.sendSocketNotification.calledOnce);
             assert.ok(helper.sendSocketNotification.calledWith(
-                'EVENTS_LOADED', { title: 'test title for en', events: 'test events for en' }));
+                'EVENTS_LOADED', { title: 'test title for en', events: '<ul><li>test events for en</li></ul>' }));
         });
     });
 
     describe('loadEvents', () => {
 
-        it('should return loaded and parsed xml data', async () => {
+        it('should return loaded and parsed html data', async () => {
 
             // Act
             const events = await helper.loadEvents('en');
 
             // Assert
-            assert.deepStrictEqual(events, { title: 'test title for en', events: 'test events for en' });
+            assert.deepStrictEqual(events, { title: 'test title for en', events: '<ul><li>test events for en</li></ul>' });
         });
     });
 
@@ -70,61 +70,35 @@ describe('node_helper', () => {
             assert.deepStrictEqual(data, {});
         });
 
-        it('should return nothing if no rss data is available', () => {
+        it('should return title and events if they are available', () => {
 
             // Arrange
-            const xml = '<json>no_rss</json>';
+            const html = `
+                <div id="mp-otd">
+                    <p>test title</p>
+                    <ul><li>test events</li></ul>
+                </div>`;
 
             // Act
-            const data = helper.parseEvents(xml);
+            const data = helper.parseEvents(html);
 
             // Assert
-            assert.deepStrictEqual(data, {});
+            assert.deepStrictEqual(data, { title: 'test title', events: '<ul><li>test events</li></ul>' });
         });
 
-        it('should return nothing if no channel data is available', () => {
+        it('should should return no title if its not available', () => {
 
             // Arrange
-            const xml = '<json><rss>no_channel</rss></json>';
+            const html = `
+                <div id="mp-otd">
+                    <ul><li>test events</li></ul>
+                </div>`;
 
             // Act
-            const data = helper.parseEvents(xml);
+            const data = helper.parseEvents(html);
 
             // Assert
-            assert.deepStrictEqual(data, {});
-        });
-
-        it('should return nothing if no item data is available', () => {
-
-            // Arrange
-            const xml = '<json><rss><channel>no_item</channel></rss></json>';
-
-            // Act
-            const data = helper.parseEvents(xml);
-
-            // Assert
-            assert.deepStrictEqual(data, {});
-        });
-
-        it('should return title and events if it is available', () => {
-
-            // Arrange
-            const xml = `
-                <rss>
-                    <channel>
-                        <item>dummy</item>
-                        <item>
-                            <title>test title</title>
-                            <description>test events</description>
-                        </item>
-                    </channel>
-                </rss>`;
-
-            // Act
-            const data = helper.parseEvents(xml);
-
-            // Assert
-            assert.deepStrictEqual(data, { title: 'test title', events: 'test events' });
+            assert.deepStrictEqual(data, { title: null, events: '<ul><li>test events</li></ul>' });
         });
     });
 });

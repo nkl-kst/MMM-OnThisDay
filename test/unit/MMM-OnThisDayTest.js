@@ -30,15 +30,27 @@ describe('MMM-OnThisDay', () => {
         sinon.restore();
     });
 
+    describe('getScripts', () => {
+
+        it('should return an array', () => {
+
+            // Act
+            const scripts = module.getScripts();
+
+            // Assert
+            assert.ok(Array.isArray(scripts));
+        });
+    });
+
     describe('getStyles', () => {
 
         it('should return an array', () => {
 
             // Act
-            const style = module.getStyles();
+            const styles = module.getStyles();
 
             // Assert
-            assert.ok(Array.isArray(style));
+            assert.ok(Array.isArray(styles));
         });
     });
 
@@ -206,7 +218,7 @@ describe('MMM-OnThisDay', () => {
 
             // Assert
             assert.strictEqual(module.title, 'Test title');
-            assert.strictEqual(module.events, 'Test events parsed from string');
+            assert.strictEqual(module.events, 'Test events');
         });
     });
 
