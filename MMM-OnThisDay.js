@@ -61,7 +61,7 @@ const moduleDefinition = {
         return {
             en: 'translation/en.json',
             de: 'translation/de.json',
-            //fr: 'TODO'
+            fr: 'translation/fr.json',
         }
     },
 
