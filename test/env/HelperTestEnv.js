@@ -17,17 +17,12 @@ const NodeHelperFake = {
 
 // Mock data service
 class EventServiceFake {
-    getXml(language) {
+    getHtml(language) {
         return `
-            <rss>
-                <channel>
-                    <item>dummy</item>
-                    <item>
-                        <title>test title for ${language}</title>
-                        <description>test events for ${language}</description>
-                    </item>
-                </channel>
-            </rss>`;
+            <div id="mp-otd">
+                <p>test title for ${language}</p>
+                <ul><li>test events for ${language}</li></ul>
+            </div>`;
     }
 }
 
