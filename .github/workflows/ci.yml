@@ -4,8 +4,7 @@
 name: CI
 
 # Trigger
-on:
-  push
+on: [push, pull_request]
 
 jobs:
   build:
