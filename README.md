@@ -91,6 +91,7 @@ Currently supported languages:
 - English
 - French
 - German
+- Arabic
 
 ## Problems
 

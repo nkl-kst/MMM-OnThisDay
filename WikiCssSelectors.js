@@ -21,6 +21,11 @@ const WIKI_CSS_SELECTORS = {
         title: '.portail-droite > .accueil_2017_cadre:nth-child(2) .mw-headline',
         events: '.portail-droite > .accueil_2017_cadre:nth-child(2) > ul',
     },
+    
+    ar: {
+        title: '.mp-itd > p',
+        events: '.mp-itd > ul',
+    },
 };
 
 // Export module definition for node_helper
