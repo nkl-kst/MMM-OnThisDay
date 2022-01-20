@@ -88,10 +88,11 @@ The global configured language for MagicMirror is used by this module. English w
 support the used language.
 
 Currently supported languages:
+- Arabic
 - English
 - French
 - German
-- Arabic
+- Russian
 
 ## Problems
 
