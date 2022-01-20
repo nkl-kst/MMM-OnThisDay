@@ -63,6 +63,7 @@ const moduleDefinition = {
             de: 'translation/de.json',
             fr: 'translation/fr.json',
             ar: 'translation/ar.json',
+            ru: 'translation/ru.json',
         }
     },
 

@@ -26,6 +26,11 @@ const WIKI_CSS_SELECTORS = {
         title: '.mp-itd > p',
         events: '.mp-itd > ul',
     },
+
+    ru: {
+        title: '#main-itd > .main-header.main-box-header',
+        events: '#main-itd > ul',
+    },
 };
 
 // Export module definition for node_helper
