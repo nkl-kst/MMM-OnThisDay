@@ -8,6 +8,6 @@
 apt-get install -y curl git
 
 # Node.js and Yarn
-curl -sL https://deb.nodesource.com/setup_14.x | bash -
-apt-get install -y nodejs
+curl -sL https://deb.nodesource.com/setup_16.x | bash -
+apt install -y nodejs
 npm install -g yarn
