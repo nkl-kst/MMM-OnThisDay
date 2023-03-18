@@ -3,30 +3,33 @@
 ![example workflow name](https://github.com/nkl-kst/MMM-OnThisDay/workflows/CI/badge.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://choosealicense.com/licenses/mit)
 
-This is a module for the awesome [MagicMirror²](https://github.com/MichMich/MagicMirror/). It displays historical events 
-from Wikipedia based on the current date.
+This is a module for the awesome [MagicMirror²](https://github.com/MichMich/MagicMirror/). It displays historical events from Wikipedia based on the current date.
 
 ![Screenshot](screenshot/module.png)
 
 ## Install the module
 
 Go to modules folder
-```
-cd modules/
+
+```sh
+cd modules
 ```
 
 Clone this module from Github
-```
+
+```sh
 git clone https://github.com/nkl-kst/MMM-OnThisDay
 ```
 
 Switch to newly created module folder
-```
+
+```sh
 cd MMM-OnThisDay/
 ```
 
 Install dependencies
-```
+
+```sh
 npm install --only=prod
 ```
 
@@ -36,19 +39,19 @@ After adding this module to your config (see below) restart your MagicMirror.
 
 Go to modules folder
 
-```
+```sh
 cd modules/MMM-OnThisDay
 ```
 
 Pull changes from Github
 
-```
+```sh
 git pull
 ```
 
 Install new dependencies
 
-```
+```sh
 npm install --only=prod
 ```
 
@@ -57,6 +60,7 @@ Since this repository ignores the automatically generated ``package-lock.json``,
 ## Using the module
 
 To use this module, add the following configuration block to the modules array in the `config/config.js` file:
+
 ```js
 let config = {
     modules: [
@@ -84,10 +88,10 @@ All options are optional so the module works out of the box.
 
 ## Language
 
-The global configured language for MagicMirror is used by this module. English will be the fallback, if it doesn't 
-support the used language.
+The global configured language for MagicMirror is used by this module. English will be the fallback, if it doesn't support the used language.
 
 Currently supported languages:
+
 - Arabic
 - English
 - French
@@ -102,7 +106,7 @@ If you have any problems or questions, feel free to open an issue. There are man
 
 You can simply create a development environment for modifying this module with Vagrant and Virtualbox:
 
-```
+```sh
 # Run Vagrant virtual machine
 vagrant up
 
@@ -111,7 +115,7 @@ vagrant up
 
 To run all unit tests just fire this command in the module folder
 
-```
+```sh
 # Run tests
 npm test
 ```
