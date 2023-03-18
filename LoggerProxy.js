@@ -1,4 +1,4 @@
-/* Magic Mirror
+/* MagicMirror²
  * Module: MMM-RBB-Weather
  *
  * By Nikolai Keist (github.com/nkl-kst)

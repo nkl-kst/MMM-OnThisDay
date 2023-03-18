@@ -1,4 +1,4 @@
-# Magic Mirror
+# MagicMirror²
 # Module: MMM-OnThisDay
 #
 # By Nikolai Keist (github.com/nkl-kst)

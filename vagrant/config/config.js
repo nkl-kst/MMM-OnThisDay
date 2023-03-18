@@ -1,4 +1,4 @@
-/* Magic Mirror Config Sample
+/* MagicMirror² Config Sample
  *
  * By Michael Teeuw http://michaelteeuw.nl
  * MIT Licensed.
