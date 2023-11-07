@@ -5,8 +5,8 @@
  * MIT Licensed.
  */
 
-const proxyquire = require('proxyquire').noCallThru();
 const assert = require('assert');
+const proxyquire = require('proxyquire').noCallThru();
 const sinon = require('sinon');
 
 // Mock callbacks
