@@ -9,7 +9,7 @@ const sinon = require('sinon');
 
 // Mock module registration
 Module = {
-    register: function() {},
+    register: function () {}
 };
 
 // Mock config
@@ -17,8 +17,8 @@ config = {};
 
 // Mock logging
 Log = {
-    info: function() {},
-    warn: function() {},
+    info: function () {},
+    warn: function () {}
 };
 
 // Load module definition
@@ -28,8 +28,7 @@ const moduleDefinition = require('../../MMM-OnThisDay');
 WIKI_CSS_SELECTORS = require('../../WikiCssSelectors');
 
 // Export new module with function mocks/fakes
-module.exports = function() {
-
+module.exports = function () {
     // Create module
     const module = Object.assign({}, moduleDefinition);
     module.config = module.defaults;

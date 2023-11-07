@@ -55,7 +55,7 @@ Install new dependencies
 npm install --only=prod
 ```
 
-Since this repository ignores the automatically generated ``package-lock.json``, pulling changes should always work. If not, try to reset your module with ``git reset --hard`` before pulling new changes.
+Since this repository ignores the automatically generated `package-lock.json`, pulling changes should always work. If not, try to reset your module with `git reset --hard` before pulling new changes.
 
 ## Using the module
 
@@ -66,25 +66,25 @@ let config = {
     modules: [
         {
             module: 'MMM-OnThisDay',
-            position: "top_right", // All available positions
+            position: 'top_right', // All available positions
             config: {
                 // See below for configurable options, this is optional
             }
         }
     ]
-}
+};
 ```
 
 ## Configuration options
 
 All options are optional so the module works out of the box.
 
-| Option                 | Description
-|----------------------- |------------
-| `animationSpeed`       | Duration of content refresh animation in seconds.<br><br>**Type:** `Number`<br>**Default:** `1`
-| `updateInterval`       | Time between loading new events data in seconds.<br><br>**Type:** `Number`<br>**Default:** `3600` (1 hour)
-| `maxWidth`             | Max width of the displayed events content.<br><br>**Type:** `String`<br>**Default:** `400px`
-| `textSize`             | CSS class to set the text size, use MagicMirror core classes here<br><br>**Type:** `String`<br>**Default:** `xsmall`
+| Option           | Description                                                                                                          |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `animationSpeed` | Duration of content refresh animation in seconds.<br><br>**Type:** `Number`<br>**Default:** `1`                      |
+| `updateInterval` | Time between loading new events data in seconds.<br><br>**Type:** `Number`<br>**Default:** `3600` (1 hour)           |
+| `maxWidth`       | Max width of the displayed events content.<br><br>**Type:** `String`<br>**Default:** `400px`                         |
+| `textSize`       | CSS class to set the text size, use MagicMirror core classes here<br><br>**Type:** `String`<br>**Default:** `xsmall` |
 
 ## Language
 
@@ -92,11 +92,11 @@ The global configured language for MagicMirror is used by this module. English w
 
 Currently supported languages:
 
-- Arabic
-- English
-- French
-- German
-- Russian
+-   Arabic
+-   English
+-   French
+-   German
+-   Russian
 
 ## Problems
 

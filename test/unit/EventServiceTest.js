@@ -11,24 +11,27 @@ const sinon = require('sinon');
 
 // Mock callbacks
 const responseFake = {
-    setEncoding: sinon.fake(() => { return responseFake }),
+    setEncoding: sinon.fake(() => {
+        return responseFake;
+    }),
     on: sinon.fake((event, callback) => {
         callback();
-        return responseFake
-    }),
+        return responseFake;
+    })
 };
 
 // Mock HTTPS
 const HttpsFake = {
     get: sinon.fake((url, callback) => {
         callback(responseFake);
-    }),
+    })
 };
 
-const EventService = proxyquire('../../EventService', { 'follow-redirects': { https: HttpsFake } });
+const EventService = proxyquire('../../EventService', {
+    'follow-redirects': { https: HttpsFake }
+});
 
 describe('EventService', () => {
-
     // Tested
     let service;
 
@@ -44,9 +47,7 @@ describe('EventService', () => {
     });
 
     describe('_onData', () => {
-
         it('should concat chunks', () => {
-
             // Act
             service._onData('test');
             service._onData(' chunk');
@@ -57,9 +58,7 @@ describe('EventService', () => {
     });
 
     describe('_onError', () => {
-
         it('should reject with error', () => {
-
             // Act
             service._onError('test error');
 
@@ -69,9 +68,7 @@ describe('EventService', () => {
     });
 
     describe('_onEnd', () => {
-
         it('should resolve with xml', () => {
-
             // Act
             service._onData('test xml');
             service._onEnd();
@@ -82,9 +79,7 @@ describe('EventService', () => {
     });
 
     describe('_onResponse', () => {
-
         it('should set all listeners', () => {
-
             // Act
             service._onResponse(responseFake);
 
@@ -99,9 +94,7 @@ describe('EventService', () => {
     });
 
     describe('_promiseExecutor', () => {
-
         it('should call the wiki url', () => {
-
             // Arrange
             service._onResponse = sinon.spy();
 
@@ -115,17 +108,14 @@ describe('EventService', () => {
     });
 
     describe('getHtml', () => {
-
         it('should return html data', (done) => {
-
             // Arrange (no callbacks here)
             responseFake.on = sinon.fake(() => {
-                return responseFake
+                return responseFake;
             });
 
             // Act
-            service.getHtml().then(html => {
-
+            service.getHtml().then((html) => {
                 // Assert
                 assert.strictEqual(html, 'test html');
                 done();

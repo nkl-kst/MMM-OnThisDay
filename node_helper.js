@@ -12,12 +12,10 @@ const Log = require('./LoggerProxy');
 const WIKI_CSS_SELECTORS = require('./WikiCssSelectors');
 
 module.exports = NodeHelper.create({
-
-    socketNotificationReceived: async function(notification, payload) {
+    socketNotificationReceived: async function (notification, payload) {
         Log.log(`Received socket notification ${notification}.`);
 
         if (notification === 'LOAD_EVENTS') {
-
             // Load data
             const events = await this.loadEvents(payload);
 
@@ -26,7 +24,7 @@ module.exports = NodeHelper.create({
         }
     },
 
-    loadEvents: async function(language) {
+    loadEvents: async function (language) {
         Log.log('Load events ...');
 
         // Get HTML
@@ -37,7 +35,7 @@ module.exports = NodeHelper.create({
         return this.parseEvents(html, language);
     },
 
-    parseEvents: function(html, language = 'en') {
+    parseEvents: function (html, language = 'en') {
         Log.log('Parse HTML data ...');
 
         // Create dom
@@ -54,13 +52,13 @@ module.exports = NodeHelper.create({
 
         // Check data
         if (!events) {
-            Log.log('Could not find events in HTML.')
+            Log.log('Could not find events in HTML.');
             return {};
         }
 
         return {
             title: title ? title.innerHTML : null,
-            events: events.outerHTML,
+            events: events.outerHTML
         };
-    },
+    }
 });

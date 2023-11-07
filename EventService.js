@@ -11,7 +11,6 @@ const { https } = require('follow-redirects');
  * Service object to fetch XML data from Wikipedia.
  */
 class EventService {
-
     /*
      * ### Instance ###
      */
@@ -35,39 +34,35 @@ class EventService {
     }
 
     _onResponse(response) {
-
         // Response listeners
         response
             .setEncoding('utf8')
-            .on('data', chunk => this._onData(chunk))
-            .on('error', error => this._onError(error))
-            .on('timeout', error => this._onError(error))
+            .on('data', (chunk) => this._onData(chunk))
+            .on('error', (error) => this._onError(error))
+            .on('timeout', (error) => this._onError(error))
             .on('end', () => this._onEnd());
     }
 
     _promiseExecutor(language) {
-
         // Wiki URL
         const url = `https://${language}.wikipedia.org`;
 
         // Request data
-        https.get(url, response => this._onResponse(response));
+        https.get(url, (response) => this._onResponse(response));
     }
 
     /*
      * ### Public API ###
      */
     async getHtml(language) {
-
         // Create and return promise
         return new Promise((resolve, reject) => {
-
             // Internal state
             this._resolve = resolve;
             this._reject = reject;
 
             // Execute
-            this._promiseExecutor(language)
+            this._promiseExecutor(language);
         });
     }
 }

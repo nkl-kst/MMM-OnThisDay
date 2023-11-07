@@ -10,7 +10,7 @@ const sinon = require('sinon');
 
 // Mock helper creation
 const NodeHelperFake = {
-    create: function(helperDefinition) {
+    create: function (helperDefinition) {
         return helperDefinition;
     }
 };
@@ -28,18 +28,17 @@ class EventServiceFake {
 
 // Mock proxy logger
 const LoggerProxyFake = {
-    log: function() {},
+    log: function () {}
 };
 
 // Load helper definition
 const nodeHelperDefinition = proxyquire('../../node_helper', {
-    'node_helper': NodeHelperFake,
+    node_helper: NodeHelperFake,
     './EventService': EventServiceFake,
-    './LoggerProxy': LoggerProxyFake,
+    './LoggerProxy': LoggerProxyFake
 });
 
-module.exports = function() {
-
+module.exports = function () {
     const nodeHelper = Object.assign({}, nodeHelperDefinition);
 
     // Fake inherited methods
