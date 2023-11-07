@@ -1,5 +1,5 @@
 /* MagicMirror²
- * Module: MMM-RBB-Weather
+ * Module: MMM-OnThisDay
  *
  * By Nikolai Keist (github.com/nkl-kst)
  * MIT Licensed.
