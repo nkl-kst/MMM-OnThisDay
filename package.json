@@ -8,6 +8,11 @@
         "type": "git",
         "url": "git+https://github.com/nkl-kst/MMM-OnThisDay.git"
     },
+    "keywords": [
+        "events",
+        "history",
+        "wikipedia"
+    ],
     "main": "MMM-OnThisDay.js",
     "scripts": {
         "prettier:fix": "prettier --write .",
