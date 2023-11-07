@@ -1,7 +1,7 @@
 {
   "name": "mmm-onthisday",
   "version": "0.1.1",
-  "description": "MagicMirror module to display historical events.",
+  "description": "MagicMirror² module to display historical events.",
   "author": "Nikolai Keist",
   "license": "MIT",
   "repository": {
