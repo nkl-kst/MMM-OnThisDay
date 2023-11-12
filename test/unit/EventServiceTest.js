@@ -17,18 +17,18 @@ const responseFake = {
     on: sinon.fake((event, callback) => {
         callback();
         return responseFake;
-    })
+    }),
 };
 
 // Mock HTTPS
 const HttpsFake = {
     get: sinon.fake((url, callback) => {
         callback(responseFake);
-    })
+    }),
 };
 
 const EventService = proxyquire('../../EventService', {
-    'follow-redirects': { https: HttpsFake }
+    'follow-redirects': { https: HttpsFake },
 });
 
 describe('EventService', () => {

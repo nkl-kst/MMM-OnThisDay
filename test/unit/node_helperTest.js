@@ -40,8 +40,8 @@ describe('node_helper', () => {
             assert.ok(
                 helper.sendSocketNotification.calledWith('EVENTS_LOADED', {
                     title: 'test title for en',
-                    events: '<ul><li>test events for en</li></ul>'
-                })
+                    events: '<ul><li>test events for en</li></ul>',
+                }),
             );
         });
     });
@@ -54,7 +54,7 @@ describe('node_helper', () => {
             // Assert
             assert.deepStrictEqual(events, {
                 title: 'test title for en',
-                events: '<ul><li>test events for en</li></ul>'
+                events: '<ul><li>test events for en</li></ul>',
             });
         });
     });
@@ -82,7 +82,7 @@ describe('node_helper', () => {
             // Assert
             assert.deepStrictEqual(data, {
                 title: 'test title',
-                events: '<ul><li>test events</li></ul>'
+                events: '<ul><li>test events</li></ul>',
             });
         });
 
@@ -99,7 +99,7 @@ describe('node_helper', () => {
             // Assert
             assert.deepStrictEqual(data, {
                 title: null,
-                events: '<ul><li>test events</li></ul>'
+                events: '<ul><li>test events</li></ul>',
             });
         });
     });

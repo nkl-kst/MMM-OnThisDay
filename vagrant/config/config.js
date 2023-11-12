@@ -18,13 +18,13 @@ let config = {
     modules: [
         {
             module: 'clock',
-            position: 'top_right'
+            position: 'top_right',
         },
         {
             module: 'MMM-OnThisDay',
-            position: 'top_left'
-        }
-    ]
+            position: 'top_left',
+        },
+    ],
 };
 
 /*************** DO NOT EDIT THE LINE BELOW ***************/

@@ -69,9 +69,9 @@ let config = {
             position: 'top_right', // All available positions
             config: {
                 // See below for configurable options, this is optional
-            }
-        }
-    ]
+            },
+        },
+    ],
 };
 ```
 

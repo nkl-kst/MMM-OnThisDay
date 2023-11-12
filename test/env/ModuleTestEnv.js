@@ -9,7 +9,7 @@ const sinon = require('sinon');
 
 // Mock module registration
 Module = {
-    register: function () {}
+    register: function () {},
 };
 
 // Mock config
@@ -18,7 +18,7 @@ config = {};
 // Mock logging
 Log = {
     info: function () {},
-    warn: function () {}
+    warn: function () {},
 };
 
 // Load module definition

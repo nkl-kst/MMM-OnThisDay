@@ -58,7 +58,7 @@ module.exports = NodeHelper.create({
 
         return {
             title: title ? title.innerHTML : null,
-            events: events.outerHTML
+            events: events.outerHTML,
         };
-    }
+    },
 });

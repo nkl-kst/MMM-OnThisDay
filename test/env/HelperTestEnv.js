@@ -12,7 +12,7 @@ const sinon = require('sinon');
 const NodeHelperFake = {
     create: function (helperDefinition) {
         return helperDefinition;
-    }
+    },
 };
 
 // Mock data service
@@ -28,14 +28,14 @@ class EventServiceFake {
 
 // Mock proxy logger
 const LoggerProxyFake = {
-    log: function () {}
+    log: function () {},
 };
 
 // Load helper definition
 const nodeHelperDefinition = proxyquire('../../node_helper', {
     node_helper: NodeHelperFake,
     './EventService': EventServiceFake,
-    './LoggerProxy': LoggerProxyFake
+    './LoggerProxy': LoggerProxyFake,
 });
 
 module.exports = function () {

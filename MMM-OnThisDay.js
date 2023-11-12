@@ -13,7 +13,7 @@ const moduleDefinition = {
 
         // Style
         maxWidth: '400px',
-        textSize: 'xsmall'
+        textSize: 'xsmall',
     },
 
     requiresVersion: '2.1.0', // Required version of MagicMirror
@@ -57,7 +57,7 @@ const moduleDefinition = {
             de: 'translation/de.json',
             fr: 'translation/fr.json',
             ar: 'translation/ar.json',
-            ru: 'translation/ru.json'
+            ru: 'translation/ru.json',
         };
     },
 
@@ -78,7 +78,7 @@ const moduleDefinition = {
     getTemplateData: function () {
         return {
             config: this.config,
-            events: this.events
+            events: this.events,
         };
     },
 
@@ -139,7 +139,7 @@ const moduleDefinition = {
         setTimeout(() => {
             this.loadEvents();
         }, this.config.updateInterval * 1000);
-    }
+    },
 };
 
 // Register module definition

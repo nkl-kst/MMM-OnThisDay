@@ -155,7 +155,7 @@ describe('MMM-OnThisDay', () => {
             // Arrange
             const payload = {
                 title: 'Should not appear',
-                events: 'Should not appear'
+                events: 'Should not appear',
             };
 
             // Act
@@ -170,7 +170,7 @@ describe('MMM-OnThisDay', () => {
             // Arrange
             const payload = {
                 title: 'Should not appear',
-                events: null
+                events: null,
             };
 
             // Act
@@ -185,7 +185,7 @@ describe('MMM-OnThisDay', () => {
             // Arrange
             const payload = {
                 title: 'Test title',
-                events: 'Test events'
+                events: 'Test events',
             };
 
             // Act
