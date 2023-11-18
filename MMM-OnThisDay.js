@@ -39,7 +39,10 @@ const moduleDefinition = {
      * @returns {[string]}
      */
     getScripts: function () {
-        return ['WikiCssSelectors.js'];
+        // prettier-ignore
+        return [
+            'WikiCssSelectors.js'
+        ];
     },
 
     /**
@@ -48,7 +51,10 @@ const moduleDefinition = {
      * @returns {[string]}
      */
     getStyles: function () {
-        return ['MMM-OnThisDay.css'];
+        // prettier-ignore
+        return [
+            'MMM-OnThisDay.css'
+        ];
     },
 
     getTranslations: function () {
