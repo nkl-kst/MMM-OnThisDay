@@ -24,7 +24,7 @@ git clone https://github.com/nkl-kst/MMM-OnThisDay
 Switch to newly created module folder
 
 ```sh
-cd MMM-OnThisDay/
+cd MMM-OnThisDay
 ```
 
 Install dependencies
