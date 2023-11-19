@@ -13,7 +13,7 @@ const WIKI_CSS_SELECTORS = {
     },
 
     de: {
-        title: '#ereignisse > .hauptseite-box-title',
+        title: '#ereignisse .hauptseite-box-title',
         events: '#ereignisse > .hauptseite-box-content > ul:first-of-type',
     },
 
