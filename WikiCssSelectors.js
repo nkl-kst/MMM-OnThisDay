@@ -1,4 +1,4 @@
-/* Magic Mirror
+/* MagicMirror²
  * Module: MMM-OnThisDay
  *
  * By Nikolai Keist (github.com/nkl-kst)
@@ -6,7 +6,6 @@
  */
 
 const WIKI_CSS_SELECTORS = {
-
     en: {
         title: '#mp-otd > p',
         events: '#mp-otd > ul',
@@ -21,7 +20,7 @@ const WIKI_CSS_SELECTORS = {
         title: '.portail-droite > .accueil_2017_cadre:nth-child(2) .mw-headline',
         events: '.portail-droite > .accueil_2017_cadre:nth-child(2) > ul',
     },
-    
+
     ar: {
         title: '.mp-itd > p',
         events: '.mp-itd > ul',

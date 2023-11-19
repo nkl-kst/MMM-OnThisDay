@@ -1,41 +1,48 @@
 {
-  "name": "MMM-OnThisDay",
-  "version": "0.1.1",
-  "description": "MagicMirror module to display historical events.",
-  "author": "Nikolai Keist",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nkl-kst/MMM-OnThisDay.git"
-  },
-  "main": "MMM-OnThisDay.js",
-  "scripts": {
-    "test": "nyc mocha test/unit --recursive",
-    "test-functional": "mocha test/functional --recursive"
-  },
-  "dependencies": {
-    "follow-redirects": "^1.12.1",
-    "jsdom": "^16.3.0"
-  },
-  "devDependencies": {
-    "mocha": "^8.0.1",
-    "nyc": "^15.1.0",
-    "proxyquire": "^2.1.3",
-    "sinon": "^9.0.2"
-  },
-  "nyc": {
-    "reporter": [
-      "text",
-      "html"
+    "name": "mmm-onthisday",
+    "version": "0.1.2",
+    "description": "MagicMirror² module to display historical events.",
+    "author": "Nikolai Keist",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nkl-kst/MMM-OnThisDay.git"
+    },
+    "keywords": [
+        "events",
+        "history",
+        "wikipedia"
     ],
-    "exclude": [
-      "coverage",
-      "test",
-      "vagrant",
-      "LoggerProxy.js",
-      "WikiCssSelectors.js"
-    ],
-    "cache": true,
-    "all": true
-  }
+    "main": "MMM-OnThisDay.js",
+    "scripts": {
+        "prettier:fix": "prettier --write .",
+        "test": "nyc mocha test/unit --recursive && prettier --check .",
+        "test-functional": "mocha test/functional --recursive"
+    },
+    "dependencies": {
+        "follow-redirects": "^1.15.3",
+        "jsdom": "^22.1.0"
+    },
+    "devDependencies": {
+        "mocha": "^10.2.0",
+        "nyc": "^15.1.0",
+        "prettier": "^3.1.0",
+        "proxyquire": "^2.1.3",
+        "sinon": "^17.0.1"
+    },
+    "nyc": {
+        "reporter": [
+            "text",
+            "html"
+        ],
+        "exclude": [
+            "coverage",
+            "test",
+            "vagrant",
+            "LoggerProxy.js",
+            "WikiCssSelectors.js"
+        ],
+        "cache": true,
+        "all": true
+    }
 }

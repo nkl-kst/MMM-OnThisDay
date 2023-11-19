@@ -1,4 +1,4 @@
-/* Magic Mirror
+/* MagicMirror²
  * Module: MMM-OnThisDay
  *
  * By Nikolai Keist (github.com/nkl-kst)
@@ -6,11 +6,9 @@
  */
 
 const moduleDefinition = {
-
     defaults: {
-
         // Intervals
-        animationSpeed: 1,   // 1 sec.
+        animationSpeed: 1, // 1 sec.
         updateInterval: 3600, // 60 min.
 
         // Style
@@ -40,10 +38,11 @@ const moduleDefinition = {
      *
      * @returns {[string]}
      */
-    getScripts: function() {
+    getScripts: function () {
+        // prettier-ignore
         return [
-            'WikiCssSelectors.js',
-        ]
+            'WikiCssSelectors.js'
+        ];
     },
 
     /**
@@ -51,20 +50,21 @@ const moduleDefinition = {
      *
      * @returns {[string]}
      */
-    getStyles: function() {
+    getStyles: function () {
+        // prettier-ignore
         return [
-            'MMM-OnThisDay.css',
+            'MMM-OnThisDay.css'
         ];
     },
 
-    getTranslations: function() {
+    getTranslations: function () {
         return {
             en: 'translation/en.json',
             de: 'translation/de.json',
             fr: 'translation/fr.json',
             ar: 'translation/ar.json',
             ru: 'translation/ru.json',
-        }
+        };
     },
 
     /**
@@ -72,7 +72,7 @@ const moduleDefinition = {
      *
      * @returns {string} Template name
      */
-    getTemplate: function() {
+    getTemplate: function () {
         return 'MMM-OnThisDay.njk';
     },
 
@@ -81,18 +81,18 @@ const moduleDefinition = {
      *
      * @returns {{}} Data to render
      */
-    getTemplateData: function() {
+    getTemplateData: function () {
         return {
             config: this.config,
             events: this.events,
         };
     },
 
-    getHeader: function() {
+    getHeader: function () {
         return this.data.header ? this.data.header : this.title;
     },
 
-    start: function() {
+    start: function () {
         Log.info('MMM-OnThisDay starting...');
 
         // Check languages
@@ -102,22 +102,19 @@ const moduleDefinition = {
         Log.info(`Using language ${this.usedLanguage}.`);
     },
 
-    notificationReceived: function(notification) {
-
+    notificationReceived: function (notification) {
         // DOM ready
         if (notification === 'MODULE_DOM_CREATED') {
-
             // Initial events load
             this.loadEvents();
         }
     },
 
-    socketNotificationReceived: function(notification, payload) {
+    socketNotificationReceived: function (notification, payload) {
         Log.info(`Received socket notification ${notification}.`);
 
         // Events loaded with node helper
         if (notification === 'EVENTS_LOADED') {
-
             // No data
             if (!payload.events) {
                 Log.warn('No events available.');
@@ -134,7 +131,7 @@ const moduleDefinition = {
         }
     },
 
-    loadEvents: function() {
+    loadEvents: function () {
         Log.info('Load events ...');
 
         // Load events in node helper
@@ -144,11 +141,11 @@ const moduleDefinition = {
         this.scheduleRefresh();
     },
 
-    scheduleRefresh: function() {
+    scheduleRefresh: function () {
         setTimeout(() => {
             this.loadEvents();
-        }, this.config.updateInterval * 1000)
-    }
+        }, this.config.updateInterval * 1000);
+    },
 };
 
 // Register module definition

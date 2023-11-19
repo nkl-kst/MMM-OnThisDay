@@ -1,4 +1,4 @@
-/* Magic Mirror
+/* MagicMirror²
  * Module: MMM-OnThisDay
  *
  * By Nikolai Keist (github.com/nkl-kst)
@@ -10,7 +10,6 @@ const sinon = require('sinon');
 const newModule = require('../env/ModuleTestEnv');
 
 describe('MMM-OnThisDay', () => {
-
     // Tested
     let module;
 
@@ -18,7 +17,6 @@ describe('MMM-OnThisDay', () => {
     let clock;
 
     beforeEach(() => {
-
         // Create module
         module = newModule();
 
@@ -31,9 +29,7 @@ describe('MMM-OnThisDay', () => {
     });
 
     describe('getScripts', () => {
-
         it('should return an array', () => {
-
             // Act
             const scripts = module.getScripts();
 
@@ -43,9 +39,7 @@ describe('MMM-OnThisDay', () => {
     });
 
     describe('getStyles', () => {
-
         it('should return an array', () => {
-
             // Act
             const styles = module.getStyles();
 
@@ -55,9 +49,7 @@ describe('MMM-OnThisDay', () => {
     });
 
     describe('getTranslations', () => {
-
         it('should return an object', () => {
-
             // Act
             const translations = module.getTranslations();
 
@@ -67,9 +59,7 @@ describe('MMM-OnThisDay', () => {
     });
 
     describe('getTemplate', () => {
-
         it('should return a string', () => {
-
             // Act
             const template = module.getTemplate();
 
@@ -79,9 +69,7 @@ describe('MMM-OnThisDay', () => {
     });
 
     describe('getTemplateData', () => {
-
         it('should return an object', () => {
-
             // Act
             const templateData = module.getTemplateData();
 
@@ -91,9 +79,7 @@ describe('MMM-OnThisDay', () => {
     });
 
     describe('getHeader', () => {
-
         it('should return user header if set', () => {
-
             // Arrange
             module.data.header = 'User header';
 
@@ -105,7 +91,6 @@ describe('MMM-OnThisDay', () => {
         });
 
         it('should return module title if user header is unset', () => {
-
             // Arrange
             module.title = 'Module title';
 
@@ -118,9 +103,7 @@ describe('MMM-OnThisDay', () => {
     });
 
     describe('start', () => {
-
         it('should set user language', () => {
-
             // Arrange
             config.language = 'de';
 
@@ -132,7 +115,6 @@ describe('MMM-OnThisDay', () => {
         });
 
         it('should set fallback language if user language is not supported', () => {
-
             // Arrange
             config.language = 'not supported';
 
@@ -145,9 +127,7 @@ describe('MMM-OnThisDay', () => {
     });
 
     describe('notificationReceived', () => {
-
         it('should do nothing on unknown notification', () => {
-
             // Arrange
             module.loadEvents = sinon.spy();
 
@@ -159,7 +139,6 @@ describe('MMM-OnThisDay', () => {
         });
 
         it('should load events on dom creation', () => {
-
             // Arrange
             module.loadEvents = sinon.spy();
 
@@ -172,9 +151,7 @@ describe('MMM-OnThisDay', () => {
     });
 
     describe('socketNotificationReceived', () => {
-
         it('should do nothing on unknown notifications', () => {
-
             // Arrange
             const payload = {
                 title: 'Should not appear',
@@ -190,7 +167,6 @@ describe('MMM-OnThisDay', () => {
         });
 
         it('should do nothing if no events were found', () => {
-
             // Arrange
             const payload = {
                 title: 'Should not appear',
@@ -206,7 +182,6 @@ describe('MMM-OnThisDay', () => {
         });
 
         it('should set title and events', () => {
-
             // Arrange
             const payload = {
                 title: 'Test title',
@@ -223,9 +198,7 @@ describe('MMM-OnThisDay', () => {
     });
 
     describe('loadEvents', () => {
-
         it('should send socket notification', () => {
-
             // Act
             module.loadEvents();
 
@@ -234,7 +207,6 @@ describe('MMM-OnThisDay', () => {
         });
 
         it('should schedule refresh', () => {
-
             // Arrange
             module.scheduleRefresh = sinon.spy();
 
@@ -247,9 +219,7 @@ describe('MMM-OnThisDay', () => {
     });
 
     describe('scheduleRefresh', () => {
-
         it('should not load events before update interval', () => {
-
             // Arrange
             module.config.updateInterval = 1;
             module.loadEvents = sinon.spy();
@@ -263,7 +233,6 @@ describe('MMM-OnThisDay', () => {
         });
 
         it('should not load events on update interval', () => {
-
             // Arrange
             module.config.updateInterval = 1;
             module.loadEvents = sinon.spy();

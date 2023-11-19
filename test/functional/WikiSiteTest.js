@@ -1,4 +1,4 @@
-/* Magic Mirror
+/* MagicMirror²
  * Module: MMM-OnThisDay
  *
  * By Nikolai Keist (github.com/nkl-kst)
@@ -11,9 +11,7 @@ const EventService = require('../../EventService');
 const WIKI_CSS_SELECTORS = require('../../WikiCssSelectors');
 
 describe('Wikipedia HTML', () => {
-
     for (const language in WIKI_CSS_SELECTORS) {
-
         if (!WIKI_CSS_SELECTORS.hasOwnProperty(language)) {
             continue;
         }
@@ -22,7 +20,6 @@ describe('Wikipedia HTML', () => {
         const eventsSelector = WIKI_CSS_SELECTORS[language].events;
 
         it(`should return HTML with necessary CSS selectors from Wikipedia (${language})`, async () => {
-
             // Arrange
             const service = new EventService();
 
