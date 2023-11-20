@@ -27,13 +27,11 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
 
-            - name: Prettify code
-              uses: creyD/prettier_action@v4.3
-              with:
-                prettier_options: --write .
-
             # Install
             - run: yarn install
+
+            # Prettify code
+            - run: npx prettier --write .
 
             # Tests
             - run: npm test
