@@ -31,7 +31,7 @@ jobs:
             - run: yarn install
 
             # Prettify code
-            - run: npx prettier --write .
+            - run: yarn prettier --write .
 
             # Tests
             - run: npm test
