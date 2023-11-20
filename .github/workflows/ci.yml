@@ -1,7 +1,7 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# This workflow will do a clean install of node dependencies, prettify the source code, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: CI
+name: Continuous Integration
 
 # Trigger
 on: [push, pull_request]
@@ -26,6 +26,11 @@ jobs:
               uses: actions/setup-node@v3
               with:
                   node-version: ${{ matrix.node-version }}
+
+            - name: Prettify code
+              uses: creyD/prettier_action@v4.3
+              with:
+                prettier_options: --write .
 
             # Install
             - run: yarn install
