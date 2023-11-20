@@ -23,6 +23,8 @@ jobs:
         steps:
             # Checkout
             - uses: actions/checkout@v4
+              with:
+                ref: ${{ github.head_ref }}
 
             # Setup
             - name: Use Node.js ${{ matrix.node-version }}
