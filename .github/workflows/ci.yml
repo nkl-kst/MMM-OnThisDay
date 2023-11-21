@@ -1,13 +1,21 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# This workflow will do a clean install of node dependencies, prettify the source code, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: CI
+name: Continuous Integration
 
 # Trigger
-on: [push, pull_request]
+on:
+  pull_request:
+  push:
+    branches:
+      - master
 
 jobs:
     build:
+        permissions:
+          contents: write
+          pull-requests: write
+
         # OS
         runs-on: ubuntu-latest
 
@@ -20,6 +28,8 @@ jobs:
         steps:
             # Checkout
             - uses: actions/checkout@v4
+              with:
+                ref: ${{ github.head_ref }}
 
             # Setup
             - name: Use Node.js ${{ matrix.node-version }}
@@ -29,6 +39,9 @@ jobs:
 
             # Install
             - run: yarn install
+
+            # Prettify code
+            - run: yarn prettier --write .
 
             # Tests
             - run: npm test
@@ -46,3 +59,8 @@ jobs:
                   key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
                   restore-keys: |
                       ${{ runner.os }}-yarn-
+
+            - name: Commit changes
+              uses: stefanzweifel/git-auto-commit-action@v5
+              with:
+                commit_message: Apply formatting changes
