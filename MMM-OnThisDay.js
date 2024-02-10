@@ -111,25 +111,32 @@ const moduleDefinition = {
     },
 
     socketNotificationReceived: function (notification, payload) {
-        Log.info(`Received socket notification ${notification}.`);
+		Log.info(`Received socket notification ${notification}.`);
 
-        // Events loaded with node helper
-        if (notification === 'EVENTS_LOADED') {
-            // No data
-            if (!payload.events) {
-                Log.warn('No events available.');
-                return;
-            }
+		// Events loaded with node helper
+		if (notification === 'EVENTS_LOADED') {
+			// No data
+			if (!payload.events) {
+				Log.warn('No events available.');
+				return;
+			}
 
-            // Set content
-            this.title = payload.title;
-            this.events = payload.events;
+			// Set content
+			this.title = this.insertLineBreaks(payload.title);
+			this.events = payload.events;
 
-            // Update module
-            Log.info('Update DOM with new title and events ...');
-            this.updateDom(this.config.animationSpeed * 1000);
-        }
-    },
+			// Update module
+			Log.info('Update DOM with new title and events ...');
+			this.updateDom(this.config.animationSpeed * 1000);
+		}
+	},
+		
+	insertLineBreaks: function(htmlContent) {
+		// Replace ";" with "<br>"
+		const result = htmlContent.replace(/;/g, '<br>');
+		
+		return result;
+	},
 
     loadEvents: function () {
         Log.info('Load events ...');
