@@ -17,7 +17,7 @@ const WIKI_CSS_SELECTORS = {
     },
 
     fr: {
-        title: '.portail-droite > .accueil_2017_cadre:nth-child(2) .mw-headline',
+        title: '.portail-droite > .accueil_2017_cadre:nth-child(2) .mw-heading',
         events: '.portail-droite > .accueil_2017_cadre:nth-child(2) > ul',
     },
 
@@ -27,8 +27,8 @@ const WIKI_CSS_SELECTORS = {
     },
 
     ru: {
-        title: '#main-itd > .main-header.main-box-header',
-        events: '#main-itd > ul',
+        title: '#main-itd > .main-box-header > .main-header',
+        events: '#main-itd > .main-box-content > ul',
     },
 };
 
