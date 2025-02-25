@@ -104,15 +104,6 @@ If you have any problems or questions, feel free to open an issue. There are man
 
 ## Developer notes
 
-You can simply create a development environment for modifying this module with Vagrant and Virtualbox:
-
-```sh
-# Run Vagrant virtual machine
-vagrant up
-
-# Visit http://localhost within your browser
-```
-
 To run all unit tests just fire this command in the module folder
 
 ```sh
