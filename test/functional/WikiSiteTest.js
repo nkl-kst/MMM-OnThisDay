@@ -19,7 +19,9 @@ describe('Wikipedia HTML', () => {
         const titleSelector = WIKI_CSS_SELECTORS[language].title;
         const eventsSelector = WIKI_CSS_SELECTORS[language].events;
 
-        it(`should return HTML with necessary CSS selectors from Wikipedia (${language})`, async () => {
+        it(`should return HTML with necessary CSS selectors from Wikipedia (${language})`, async function () {
+            this.timeout(5000);
+
             // Arrange
             const service = new EventService();
 
