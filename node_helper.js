@@ -9,14 +9,16 @@ const NodeHelper = require('node_helper');
 const { JSDOM } = require('jsdom');
 
 const HtmlFetcher = require('./src/HtmlFetcher');
+const HtmlParser = require('./src/HtmlParser');
 const Log = require('./src/LoggerProxy');
-const WIKI_CSS_SELECTORS = require('./src/WikiCssSelectors');
 
 module.exports = NodeHelper.create({
     htmlFetcher: null,
+    htmlParser: null,
 
-    start: function (htmlFetcher) {
+    start: function (htmlFetcher, htmlParser) {
         this.htmlFetcher = htmlFetcher || new HtmlFetcher();
+        this.htmlParser = htmlParser || new HtmlParser(JSDOM);
     },
 
     socketNotificationReceived: async function (notification, payload) {
@@ -38,33 +40,6 @@ module.exports = NodeHelper.create({
         const html = await this.htmlFetcher.fetch(language);
 
         // Return parsed data
-        return this.parseEvents(html, language);
-    },
-
-    parseEvents: function (html, language = 'en') {
-        Log.log('Parse HTML data ...');
-
-        // Create dom
-        const dom = new JSDOM(html);
-        const document = dom.window.document;
-
-        // Get title
-        const titleSelector = WIKI_CSS_SELECTORS[language].title;
-        const title = document.querySelector(titleSelector);
-
-        // Get events
-        const eventsSelector = WIKI_CSS_SELECTORS[language].events;
-        const events = document.querySelector(eventsSelector);
-
-        // Check data
-        if (!events) {
-            Log.log('Could not find events in HTML.');
-            return {};
-        }
-
-        return {
-            title: title ? title.innerHTML : null,
-            events: events.outerHTML,
-        };
+        return this.htmlParser.parse(html, language);
     },
 });

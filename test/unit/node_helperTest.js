@@ -58,49 +58,4 @@ describe('node_helper', () => {
             });
         });
     });
-
-    describe('parseEvents', () => {
-        it('should return nothing if no data is available', () => {
-            // Act
-            const data = helper.parseEvents('');
-
-            // Assert
-            assert.deepStrictEqual(data, {});
-        });
-
-        it('should return title and events if they are available', () => {
-            // Arrange
-            const html = `
-                <div id="mp-otd">
-                    <p>test title</p>
-                    <ul><li>test events</li></ul>
-                </div>`;
-
-            // Act
-            const data = helper.parseEvents(html);
-
-            // Assert
-            assert.deepStrictEqual(data, {
-                title: 'test title',
-                events: '<ul><li>test events</li></ul>',
-            });
-        });
-
-        it('should should return no title if its not available', () => {
-            // Arrange
-            const html = `
-                <div id="mp-otd">
-                    <ul><li>test events</li></ul>
-                </div>`;
-
-            // Act
-            const data = helper.parseEvents(html);
-
-            // Assert
-            assert.deepStrictEqual(data, {
-                title: null,
-                events: '<ul><li>test events</li></ul>',
-            });
-        });
-    });
 });
