@@ -53,7 +53,7 @@ const moduleDefinition = {
     getStyles: function () {
         // prettier-ignore
         return [
-            'MMM-OnThisDay.css'
+            this.file('style/MMM-OnThisDay.css'),
         ];
     },
 
