@@ -34,8 +34,8 @@ const LoggerProxyFake = {
 // Load helper definition
 const nodeHelperDefinition = proxyquire('../../node_helper', {
     node_helper: NodeHelperFake,
-    './EventService': EventServiceFake,
-    './LoggerProxy': LoggerProxyFake,
+    './src/EventService': EventServiceFake,
+    './src/LoggerProxy': LoggerProxyFake,
 });
 
 module.exports = function () {

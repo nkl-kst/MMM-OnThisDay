@@ -38,8 +38,8 @@
         "exclude": [
             "coverage",
             "test",
-            "LoggerProxy.js",
-            "WikiCssSelectors.js"
+            "src/LoggerProxy.js",
+            "src/WikiCssSelectors.js"
         ],
         "cache": true,
         "all": true

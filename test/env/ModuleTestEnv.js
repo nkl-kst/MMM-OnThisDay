@@ -25,7 +25,7 @@ Log = {
 const moduleDefinition = require('../../MMM-OnThisDay');
 
 // Load Wiki CSS selectors
-WIKI_CSS_SELECTORS = require('../../WikiCssSelectors');
+WIKI_CSS_SELECTORS = require('../../src/WikiCssSelectors');
 
 // Export new module with function mocks/fakes
 module.exports = function () {
@@ -38,6 +38,7 @@ module.exports = function () {
     // Fake inherited methods
     module.updateDom = sinon.fake();
     module.sendSocketNotification = sinon.fake();
+    module.file = (path) => path;
 
     return module;
 };

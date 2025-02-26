@@ -41,7 +41,7 @@ const moduleDefinition = {
     getScripts: function () {
         // prettier-ignore
         return [
-            'WikiCssSelectors.js'
+            this.file('src/WikiCssSelectors.js'),
         ];
     },
 

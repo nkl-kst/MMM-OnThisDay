@@ -7,9 +7,9 @@
 
 const NodeHelper = require('node_helper');
 const { JSDOM } = require('jsdom');
-const EventService = require('./EventService');
-const Log = require('./LoggerProxy');
-const WIKI_CSS_SELECTORS = require('./WikiCssSelectors');
+const EventService = require('./src/EventService');
+const Log = require('./src/LoggerProxy');
+const WIKI_CSS_SELECTORS = require('./src/WikiCssSelectors');
 
 module.exports = NodeHelper.create({
     socketNotificationReceived: async function (notification, payload) {

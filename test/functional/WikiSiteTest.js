@@ -7,8 +7,8 @@
 
 const assert = require('assert');
 const { JSDOM } = require('jsdom');
-const EventService = require('../../EventService');
-const WIKI_CSS_SELECTORS = require('../../WikiCssSelectors');
+const EventService = require('../../src/EventService');
+const WIKI_CSS_SELECTORS = require('../../src/WikiCssSelectors');
 
 describe('Wikipedia HTML', () => {
     for (const language in WIKI_CSS_SELECTORS) {

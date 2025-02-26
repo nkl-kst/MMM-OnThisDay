@@ -27,7 +27,7 @@ const HttpsFake = {
     }),
 };
 
-const EventService = proxyquire('../../EventService', {
+const EventService = proxyquire('../../src/EventService', {
     'follow-redirects': { https: HttpsFake },
 });
 
