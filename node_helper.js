@@ -10,19 +10,19 @@ const { JSDOM } = require('jsdom');
 
 const HtmlFetcher = require('./src/HtmlFetcher');
 const HtmlParser = require('./src/HtmlParser');
-const Log = require('./src/LoggerProxy');
 
 module.exports = NodeHelper.create({
     htmlFetcher: null,
     htmlParser: null,
 
-    start: function (htmlFetcher, htmlParser) {
+    start: function (htmlFetcher, htmlParser, logger) {
         this.htmlFetcher = htmlFetcher || new HtmlFetcher();
         this.htmlParser = htmlParser || new HtmlParser(JSDOM);
+        this.logger = logger || require('logger');
     },
 
     socketNotificationReceived: async function (notification, payload) {
-        Log.log(`Received socket notification ${notification}.`);
+        this.logger.log(`Received socket notification ${notification}.`);
 
         if (notification === 'LOAD_EVENTS') {
             // Load data
@@ -34,7 +34,7 @@ module.exports = NodeHelper.create({
     },
 
     loadEvents: async function (language) {
-        Log.log('Load events ...');
+        this.logger.log('Load events ...');
 
         // Get HTML
         const html = await this.htmlFetcher.fetch(language);

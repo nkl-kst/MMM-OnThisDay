@@ -26,21 +26,19 @@ const htmlFetcherMock = {
     },
 };
 
-// Mock proxy logger
-const LoggerProxyFake = {
+const loggerMock = {
     log: function () {},
 };
 
 // Load helper definition
 const nodeHelperDefinition = proxyquire('../../node_helper', {
     node_helper: NodeHelperFake,
-    './src/LoggerProxy': LoggerProxyFake,
 });
 
 module.exports = function () {
     const nodeHelper = Object.assign({}, nodeHelperDefinition);
 
-    nodeHelper.start(htmlFetcherMock);
+    nodeHelper.start(htmlFetcherMock, null, loggerMock);
 
     // Fake inherited methods
     nodeHelper.sendSocketNotification = sinon.fake();
