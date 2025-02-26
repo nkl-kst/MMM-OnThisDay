@@ -15,8 +15,9 @@
     ],
     "main": "MMM-OnThisDay.js",
     "scripts": {
-        "prettier:fix": "prettier --write .",
-        "test": "nyc mocha test/unit --recursive && prettier --check .",
+        "cs-check": "prettier --check .",
+        "cs-fix": "prettier --write .",
+        "test": "nyc mocha test/unit --recursive",
         "test-functional": "mocha test/functional --recursive"
     },
     "dependencies": {

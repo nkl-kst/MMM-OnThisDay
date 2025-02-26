@@ -30,6 +30,9 @@ jobs:
             # Install
             - run: yarn install
 
+            # Check
+            - run: npm run cs-check
+
             # Tests
             - run: npm test
             - run: npm run test-functional
