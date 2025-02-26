@@ -13,9 +13,13 @@ jobs:
 
         # Node.js versions
         strategy:
-            max-parallel: 1
+            fail-fast: false
             matrix:
-                node-version: [18.x, 20.x]
+                node-version:
+                    - 18.x
+                    - 20.x
+                    - 22.x
+                    - 23.x
 
         steps:
             # Checkout
