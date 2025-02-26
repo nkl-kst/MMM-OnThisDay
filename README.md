@@ -92,11 +92,11 @@ The global configured language for MagicMirror is used by this module. English w
 
 Currently supported languages:
 
--   Arabic
--   English
--   French
--   German
--   Russian
+- Arabic
+- English
+- French
+- German
+- Russian
 
 ## Problems
 
