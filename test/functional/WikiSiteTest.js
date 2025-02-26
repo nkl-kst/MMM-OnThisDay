@@ -7,7 +7,8 @@
 
 const assert = require('assert');
 const { JSDOM } = require('jsdom');
-const EventService = require('../../src/EventService');
+
+const HtmlFetcher = require('../../src/HtmlFetcher');
 const WIKI_CSS_SELECTORS = require('../../src/WikiCssSelectors');
 
 describe('Wikipedia HTML', () => {
@@ -23,10 +24,10 @@ describe('Wikipedia HTML', () => {
             this.timeout(5000);
 
             // Arrange
-            const service = new EventService();
+            const htmlFetcher = new HtmlFetcher();
 
             // Act
-            const html = await service.getHtml(language);
+            const html = await htmlFetcher.fetch(language);
             const dom = new JSDOM(html);
             const document = dom.window.document;
 

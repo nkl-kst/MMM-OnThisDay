@@ -20,7 +20,6 @@
         "test-functional": "mocha test/functional --recursive"
     },
     "dependencies": {
-        "follow-redirects": "^1.15.3",
         "jsdom": "^22.1.0"
     },
     "devDependencies": {

@@ -7,11 +7,18 @@
 
 const NodeHelper = require('node_helper');
 const { JSDOM } = require('jsdom');
-const EventService = require('./src/EventService');
+
+const HtmlFetcher = require('./src/HtmlFetcher');
 const Log = require('./src/LoggerProxy');
 const WIKI_CSS_SELECTORS = require('./src/WikiCssSelectors');
 
 module.exports = NodeHelper.create({
+    htmlFetcher: null,
+
+    start: function (htmlFetcher) {
+        this.htmlFetcher = htmlFetcher || new HtmlFetcher();
+    },
+
     socketNotificationReceived: async function (notification, payload) {
         Log.log(`Received socket notification ${notification}.`);
 
@@ -28,8 +35,7 @@ module.exports = NodeHelper.create({
         Log.log('Load events ...');
 
         // Get HTML
-        const eventService = new EventService();
-        const html = await eventService.getHtml(language);
+        const html = await this.htmlFetcher.fetch(language);
 
         // Return parsed data
         return this.parseEvents(html, language);

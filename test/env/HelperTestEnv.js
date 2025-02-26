@@ -15,16 +15,16 @@ const NodeHelperFake = {
     },
 };
 
-// Mock data service
-class EventServiceFake {
-    getHtml(language) {
+const htmlFetcherMock = {
+    fetch: (language) => {
         return `
             <div id="mp-otd">
                 <p>test title for ${language}</p>
                 <ul><li>test events for ${language}</li></ul>
-            </div>`;
-    }
-}
+            </div>
+		`;
+    },
+};
 
 // Mock proxy logger
 const LoggerProxyFake = {
@@ -34,12 +34,13 @@ const LoggerProxyFake = {
 // Load helper definition
 const nodeHelperDefinition = proxyquire('../../node_helper', {
     node_helper: NodeHelperFake,
-    './src/EventService': EventServiceFake,
     './src/LoggerProxy': LoggerProxyFake,
 });
 
 module.exports = function () {
     const nodeHelper = Object.assign({}, nodeHelperDefinition);
+
+    nodeHelper.start(htmlFetcherMock);
 
     // Fake inherited methods
     nodeHelper.sendSocketNotification = sinon.fake();
