@@ -30,9 +30,7 @@ describe('HtmlParser', () => {
             assert.ok(typeof result.title === 'string');
             assert.ok(typeof result.events === 'string');
 
-            assert.ok(
-                result.title.includes('Was geschah am 26.&nbsp;Februar?'),
-            );
+            assert.ok(result.title.includes('Was geschah am 26. Februar?'));
             assert.ok(result.events.includes('Alexandra Povòrina'));
             assert.ok(result.events.includes('Robert Watson-Watt'));
             assert.ok(result.events.includes('Nick Leeson'));

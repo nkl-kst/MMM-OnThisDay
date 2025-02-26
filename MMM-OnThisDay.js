@@ -34,6 +34,11 @@ const moduleDefinition = {
     events: null,
 
     /**
+     * Separate items parsed from the HTML data.
+     */
+    items: null,
+
+    /**
      * Module scripts.
      *
      * @returns {[string]}
@@ -85,6 +90,7 @@ const moduleDefinition = {
         return {
             config: this.config,
             events: this.events,
+            items: this.items,
         };
     },
 
@@ -124,6 +130,7 @@ const moduleDefinition = {
             // Set content
             this.title = payload.title;
             this.events = payload.events;
+            this.items = payload.items;
 
             // Update module
             Log.info('Update DOM with new title and events ...');

@@ -9,15 +9,23 @@
 {# Wrapper #}
 <div class="{{ config.textSize }}" style="max-width: {{ config.maxWidth }};">
 
-    {% if not events %}
+    {% if items %}
 
-        {# No data #}
-        {{ 'TEXT_NODATA' | translate }}
+        <ul>
+            {% for item in items %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
 
-    {% else %}
+    {% elseif events %}
 
         {# Data loaded #}
         {{ events | safe }}
+
+    {% else %}
+
+        {# No data #}
+        {{ 'TEXT_NODATA' | translate }}
 
     {% endif %}
 

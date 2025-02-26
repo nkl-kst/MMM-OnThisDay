@@ -41,6 +41,7 @@ describe('node_helper', () => {
                 helper.sendSocketNotification.calledWith('EVENTS_LOADED', {
                     title: 'test title for en',
                     events: '<ul><li>test events for en</li></ul>',
+                    items: [],
                 }),
             );
         });
@@ -55,6 +56,7 @@ describe('node_helper', () => {
             assert.deepStrictEqual(events, {
                 title: 'test title for en',
                 events: '<ul><li>test events for en</li></ul>',
+                items: [],
             });
         });
     });
