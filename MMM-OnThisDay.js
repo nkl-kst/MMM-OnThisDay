@@ -73,7 +73,7 @@ const moduleDefinition = {
      * @returns {string} Template name
      */
     getTemplate: function () {
-        return 'MMM-OnThisDay.njk';
+        return 'template/MMM-OnThisDay.njk';
     },
 
     /**
