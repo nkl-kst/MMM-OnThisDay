@@ -83,6 +83,7 @@ All options are optional so the module works out of the box.
 | ---------------- | -------------------------------------------------------------------------------------------------------------------- |
 | `animationSpeed` | Duration of content refresh animation in seconds.<br><br>**Type:** `Number`<br>**Default:** `1`                      |
 | `updateInterval` | Time between loading new events data in seconds.<br><br>**Type:** `Number`<br>**Default:** `3600` (1 hour)           |
+| `reverseOrder`   | Display events in reversed order if supported.<br><br>**Type:** `Boolean`<br>**Default:** `false`                    |
 | `maxWidth`       | Max width of the displayed events content.<br><br>**Type:** `String`<br>**Default:** `400px`                         |
 | `textSize`       | CSS class to set the text size, use MagicMirror core classes here<br><br>**Type:** `String`<br>**Default:** `xsmall` |
 

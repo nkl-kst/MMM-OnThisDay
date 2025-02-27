@@ -11,6 +11,10 @@
 
     {% if items %}
 
+        {% if config.reverseOrder %}
+            {% set items = items | reverse %}
+        {% endif %}
+
         <ul>
             {% for item in items %}
                 <li>{{ item }}</li>

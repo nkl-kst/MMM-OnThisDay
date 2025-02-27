@@ -11,6 +11,9 @@ const moduleDefinition = {
         animationSpeed: 1, // 1 sec.
         updateInterval: 3600, // 60 min.
 
+        // Appearance
+        reverseOrder: false,
+
         // Style
         maxWidth: '400px',
         textSize: 'xsmall',
