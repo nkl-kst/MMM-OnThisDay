@@ -12,6 +12,7 @@ const moduleDefinition = {
         updateInterval: 3600, // 60 min.
 
         // Appearance
+        maxEvents: null,
         reverseOrder: false,
 
         // Style

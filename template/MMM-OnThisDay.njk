@@ -15,6 +15,10 @@
             {% set items = items | reverse %}
         {% endif %}
 
+        {% if config.maxEvents %}
+            {% set items = items.slice(0, config.maxEvents) %}
+        {% endif %}
+
         <ul>
             {% for item in items %}
                 <li>{{ item }}</li>
