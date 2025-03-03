@@ -9,6 +9,7 @@ const WIKI_CSS_SELECTORS = {
     en: {
         title: '#mp-otd > p',
         events: '#mp-otd > ul',
+        items: '#mp-otd > ul > li',
     },
 
     de: {
@@ -20,16 +21,19 @@ const WIKI_CSS_SELECTORS = {
     fr: {
         title: '.portail-droite > .accueil_2017_cadre:nth-child(2) .mw-heading',
         events: '.portail-droite > .accueil_2017_cadre:nth-child(2) > ul',
+        items: '.portail-droite > .accueil_2017_cadre:nth-child(2) > ul > li',
     },
 
     ar: {
         title: '.mp-itd > p',
         events: '.mp-itd > ul',
+        items: '.mp-itd > ul > li',
     },
 
     ru: {
         title: '#main-itd > .main-box-header > .main-header',
         events: '#main-itd > .main-box-content > ul',
+        items: '#main-itd > .main-box-content > ul > li',
     },
 };
 
