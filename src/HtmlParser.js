@@ -15,28 +15,21 @@ module.exports = class {
 
         // Get events
         const eventsSelector = WIKI_CSS_SELECTORS[language].events;
-        const events = dom.querySelector(eventsSelector);
+        const events = [];
 
-        // Get items
-        const itemSelector = WIKI_CSS_SELECTORS[language].items;
-        const items = [];
-
-        if (itemSelector !== undefined) {
-            const domItems = dom.querySelectorAll(itemSelector);
-            for (const domItem of domItems) {
-                items.push(this._removeWhitespaces(domItem.textContent));
-            }
+        const domEvents = dom.querySelectorAll(eventsSelector);
+        for (const domEvent of domEvents) {
+            events.push(this._removeWhitespaces(domEvent.textContent));
         }
 
         // Check data
-        if (!events) {
+        if (events.length <= 0) {
             return {};
         }
 
         return {
             title: title ? this._removeWhitespaces(title.textContent) : null,
-            events: events.outerHTML,
-            items: items,
+            events: events,
         };
     }
 

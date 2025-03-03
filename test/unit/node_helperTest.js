@@ -40,8 +40,7 @@ describe('node_helper', () => {
             assert.ok(
                 helper.sendSocketNotification.calledWith('EVENTS_LOADED', {
                     title: 'test title for en',
-                    events: '<ul><li>test events for en</li></ul>',
-                    items: [],
+                    events: ['test events for en'],
                 }),
             );
         });
@@ -55,8 +54,7 @@ describe('node_helper', () => {
             // Assert
             assert.deepStrictEqual(events, {
                 title: 'test title for en',
-                events: '<ul><li>test events for en</li></ul>',
-                items: [],
+                events: ['test events for en'],
             });
         });
     });

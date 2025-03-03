@@ -170,7 +170,7 @@ describe('MMM-OnThisDay', () => {
             // Arrange
             const payload = {
                 title: 'Should not appear',
-                events: null,
+                events: [],
             };
 
             // Act

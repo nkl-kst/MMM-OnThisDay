@@ -9,26 +9,21 @@
 {# Wrapper #}
 <div class="{{ config.textSize }}" style="max-width: {{ config.maxWidth }};">
 
-    {% if items %}
+    {% if events | length > 0 %}
 
         {% if config.reverseOrder %}
-            {% set items = items | reverse %}
+            {% set events = events | reverse %}
         {% endif %}
 
         {% if config.maxEvents %}
-            {% set items = items.slice(0, config.maxEvents) %}
+            {% set events = events.slice(0, config.maxEvents) %}
         {% endif %}
 
         <ul>
-            {% for item in items %}
-                <li>{{ item }}</li>
+            {% for event in events %}
+                <li>{{ event }}</li>
             {% endfor %}
         </ul>
-
-    {% elseif events %}
-
-        {# Data loaded #}
-        {{ events | safe }}
 
     {% else %}
 

@@ -33,14 +33,9 @@ const moduleDefinition = {
     title: null,
 
     /**
-     * Events as raw HTML from Wikipedia.
+     * Separate events parsed from the HTML data.
      */
     events: null,
-
-    /**
-     * Separate items parsed from the HTML data.
-     */
-    items: null,
 
     /**
      * Module scripts.
@@ -94,7 +89,6 @@ const moduleDefinition = {
         return {
             config: this.config,
             events: this.events,
-            items: this.items,
         };
     },
 
@@ -126,7 +120,7 @@ const moduleDefinition = {
         // Events loaded with node helper
         if (notification === 'EVENTS_LOADED') {
             // No data
-            if (!payload.events) {
+            if (payload.events.length <= 0) {
                 Log.warn('No events available.');
                 return;
             }
@@ -134,7 +128,6 @@ const moduleDefinition = {
             // Set content
             this.title = payload.title;
             this.events = payload.events;
-            this.items = payload.items;
 
             // Update module
             Log.info('Update DOM with new title and events ...');

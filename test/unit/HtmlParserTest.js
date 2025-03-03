@@ -28,13 +28,14 @@ describe('HtmlParser', () => {
             // Assert
             assert.ok(typeof result === 'object');
             assert.ok(typeof result.title === 'string');
-            assert.ok(typeof result.events === 'string');
+            assert.ok(Array.isArray(result.events));
 
             assert.ok(result.title.includes('Was geschah am 26. Februar?'));
-            assert.ok(result.events.includes('Alexandra Povòrina'));
-            assert.ok(result.events.includes('Robert Watson-Watt'));
-            assert.ok(result.events.includes('Nick Leeson'));
-            assert.ok(result.events.includes('Henry Grunwald'));
+            assert.ok(result.events[0].includes('Alex­an­dra Povò­rina'));
+            assert.ok(result.events[1].includes('August Strindberg'));
+            assert.ok(result.events[2].includes('Robert Watson-Watt'));
+            assert.ok(result.events[3].includes('Nick Leeson'));
+            assert.ok(result.events[4].includes('Henry Grunwald'));
         });
     });
 });

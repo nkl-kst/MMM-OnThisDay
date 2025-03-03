@@ -19,7 +19,6 @@ describe('Wikipedia HTML', () => {
 
         const titleSelector = WIKI_CSS_SELECTORS[language].title;
         const eventsSelector = WIKI_CSS_SELECTORS[language].events;
-        const itemsSelector = WIKI_CSS_SELECTORS[language].items;
 
         it(`should return HTML with necessary CSS selectors from Wikipedia (${language})`, async function () {
             this.timeout(5000);
@@ -35,10 +34,6 @@ describe('Wikipedia HTML', () => {
             // Assert
             assert.ok(document.querySelector(titleSelector));
             assert.ok(document.querySelector(eventsSelector));
-
-            if (itemsSelector) {
-                assert.ok(document.querySelector(itemsSelector));
-            }
         });
     }
 });
