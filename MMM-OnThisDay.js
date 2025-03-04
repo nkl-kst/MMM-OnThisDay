@@ -47,6 +47,11 @@ const moduleDefinition = {
     carouselIndex: -1,
 
     /**
+     * Timer for the current displayed event in the carousel mode.
+     */
+    carouselTimer: null,
+
+    /**
      * Module scripts.
      *
      * @returns {[string]}
@@ -129,26 +134,7 @@ const moduleDefinition = {
 
         // Events loaded with node helper
         if (notification === 'EVENTS_LOADED') {
-            // No data
-            if (payload.events.length <= 0) {
-                Log.warn('No events available.');
-                return;
-            }
-
-            // Set content
-            this.title = payload.title;
-            this.events = payload.events;
-
-            // Carousel mode
-            if (this.config.carousel) {
-                Log.info('Update DOM in carousel model ...');
-                this.updateCarousel();
-                return;
-            }
-
-            // Update module
-            Log.info('Update DOM with new title and events ...');
-            this.updateDom(this.config.animationSpeed * 1000);
+            this.handleEventsLoaded(payload);
         }
     },
 
@@ -160,6 +146,35 @@ const moduleDefinition = {
 
         // Schedule next load
         this.scheduleRefresh();
+    },
+
+    handleEventsLoaded: function(payload) {
+        // No data
+        if (payload.events.length <= 0) {
+            Log.warn('No events available.');
+            return;
+        }
+
+        // Set content
+        this.title = payload.title;
+        this.events = payload.events;
+
+        // Carousel mode
+        if (this.config.carousel) {
+            Log.info('Update DOM in carousel model ...');
+
+            // Reset current carousel timer
+            if (this.carouselTimer) {
+                clearTimeout(this.carouselTimer);
+            }
+
+            this.updateCarousel();
+            return;
+        }
+
+        // Update module
+        Log.info('Update DOM with new title and events ...');
+        this.updateDom(this.config.animationSpeed * 1000);
     },
 
     scheduleRefresh: function () {
@@ -178,7 +193,8 @@ const moduleDefinition = {
 
         this.updateDom(this.config.animationSpeed * 1000);
 
-        setTimeout(() => {
+        // Schedule next update
+        this.carouselTimer = setTimeout(() => {
             this.updateCarousel();
         }, this.config.carouselInterval * 1000);
     },
