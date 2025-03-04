@@ -19,11 +19,21 @@
             {% set events = events.slice(0, config.maxEvents) %}
         {% endif %}
 
-        <ul>
-            {% for event in events %}
-                <li>{{ event }}</li>
-            {% endfor %}
-        </ul>
+        {% if config.carousel %}
+
+            {# Carousel mode #}
+            <div>{{ events[carouselIndex] }}</div>
+
+        {% else %}
+
+            {# Normal mode #}
+            <ul>
+                {% for event in events %}
+                    <li>{{ event }}</li>
+                {% endfor %}
+            </ul>
+
+        {% endif %}
 
     {% else %}
 

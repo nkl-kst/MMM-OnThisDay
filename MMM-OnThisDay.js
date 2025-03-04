@@ -15,6 +15,10 @@ const moduleDefinition = {
         maxEvents: null,
         reverseOrder: false,
 
+        // Carousel
+        carousel: false,
+        carouselInterval: 30, // 30 sec.
+
         // Style
         maxWidth: '400px',
         textSize: 'xsmall',
@@ -36,6 +40,11 @@ const moduleDefinition = {
      * Separate events parsed from the HTML data.
      */
     events: null,
+
+    /**
+     * Index of current event displayed in the carousel mode.
+     */
+    carouselIndex: -1,
 
     /**
      * Module scripts.
@@ -89,6 +98,7 @@ const moduleDefinition = {
         return {
             config: this.config,
             events: this.events,
+            carouselIndex: this.carouselIndex,
         };
     },
 
@@ -129,6 +139,13 @@ const moduleDefinition = {
             this.title = payload.title;
             this.events = payload.events;
 
+            // Carousel mode
+            if (this.config.carousel) {
+                Log.info('Update DOM in carousel model ...');
+                this.updateCarousel();
+                return;
+            }
+
             // Update module
             Log.info('Update DOM with new title and events ...');
             this.updateDom(this.config.animationSpeed * 1000);
@@ -149,6 +166,21 @@ const moduleDefinition = {
         setTimeout(() => {
             this.loadEvents();
         }, this.config.updateInterval * 1000);
+    },
+
+    updateCarousel: function () {
+        ++this.carouselIndex;
+
+        // Reset if exceeded
+        if (this.carouselIndex >= this.events.length) {
+            this.carouselIndex = 0;
+        }
+
+        this.updateDom(this.config.animationSpeed * 1000);
+
+        setTimeout(() => {
+            this.updateCarousel();
+        }, this.config.carouselInterval * 1000);
     },
 };
 
