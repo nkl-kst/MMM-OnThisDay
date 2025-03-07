@@ -42,3 +42,14 @@
     font-weight: inherit;
     text-decoration: inherit;
 }
+
+.MMM-OnThisDay .event-year-list {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0 0;
+}
+
+.MMM-OnThisDay .event-year-list .event-year {
+    display: inline;
+    margin: 0;
+}

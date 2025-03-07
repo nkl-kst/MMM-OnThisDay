@@ -24,6 +24,20 @@
             {# Carousel mode #}
             <div>{{ events[carouselIndex] }}</div>
 
+            {# List of years #}
+            {% if eventYears | length > 0 %}
+
+                <ul class="event-year-list">
+                    {% for year in eventYears %}
+
+                        {% set fontWeight = 'bold' if loop.index0 == carouselIndex else 'light' %}
+                        <li class="event-year {{ fontWeight }}">{{ year }}</li>
+
+                    {% endfor %}
+                </ul>
+
+            {% endif %}
+
         {% else %}
 
             {# Normal mode #}
