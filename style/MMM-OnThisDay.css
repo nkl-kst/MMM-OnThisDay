@@ -31,3 +31,19 @@
     display: inline;
     margin: 0;
 }
+
+/* Progress bar */
+.MMM-OnThisDay progress {
+    appearance: none;
+    width: 100%;
+    height: 0.2rem;
+    vertical-align: top;
+}
+
+.MMM-OnThisDay progress::-webkit-progress-bar {
+    background-color: var(--color-background);
+}
+
+.MMM-OnThisDay progress::-webkit-progress-value {
+    background-color: var(--color-text-dimmed);
+}
