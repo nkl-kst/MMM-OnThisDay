@@ -22,9 +22,7 @@
         {% if config.carousel %}
 
             {# Progress bar #}
-            <progress id="mmm-onthisday-carousel-progress" value="{{ config.carouselInterval / 3 }}" max="{{ config.carouselInterval }}"></progress>
-
-            {# TODO: Update progress bar with inline script #}
+            <progress id="mmm-otd-carousel-progress" value="0" max="{{ config.carouselInterval - 1 }}"></progress>
 
             {# Carousel mode #}
             <div>{{ events[carouselIndex] }}</div>

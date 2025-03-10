@@ -65,6 +65,7 @@ const moduleDefinition = {
         // prettier-ignore
         return [
             this.file('src/WikiCssSelectors.js'),
+            this.file('src/ProgressUpdater.js'),
         ];
     },
 
