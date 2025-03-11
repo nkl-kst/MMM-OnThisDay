@@ -46,5 +46,4 @@
 
 .MMM-OnThisDay progress::-webkit-progress-value {
     background-color: var(--color-text-dimmed);
-    transition: width 1s linear;
 }
