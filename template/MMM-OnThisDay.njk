@@ -22,13 +22,15 @@
         {% if config.carousel %}
 
             {# Progress bar #}
-            <style>
-                .MMM-OnThisDay progress::-webkit-progress-value {
-                    transition: width {{ config.carouselInterval - 0.5 }}s linear;
-                }
-            </style>
+            {% if config.carouselProgress %}
+                <style>
+                    .MMM-OnThisDay progress::-webkit-progress-value {
+                        transition: width {{ config.carouselInterval - 0.5 }}s linear;
+                    }
+                </style>
 
-            <progress id="mmm-otd-carousel-progress" value="0" max="1"></progress>
+                <progress id="mmm-otd-carousel-progress" value="0" max="1"></progress>
+            {% endif %}
 
             {# Carousel mode #}
             <div>{{ events[carouselIndex] }}</div>

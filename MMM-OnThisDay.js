@@ -18,6 +18,7 @@ const moduleDefinition = {
         // Carousel
         carousel: false,
         carouselInterval: 30, // 30 sec.
+        carouselProgress: false,
 
         // Style
         maxWidth: '400px',
