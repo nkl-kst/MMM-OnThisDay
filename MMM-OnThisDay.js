@@ -167,6 +167,16 @@ const moduleDefinition = {
         this.title = payload.title;
         this.events = payload.events;
 
+        // Apply reverse config option
+        if (this.config.reverseOrder) {
+            this.events = this.events.reverse();
+        }
+
+        // Apply limit
+        if (this.config.maxEvents) {
+            this.events = this.events.slice(0, this.config.maxEvents);
+        }
+
         // Carousel mode
         if (this.config.carousel) {
             Log.info('Update DOM in carousel model ...');

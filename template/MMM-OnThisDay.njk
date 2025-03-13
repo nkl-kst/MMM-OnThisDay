@@ -11,14 +11,6 @@
 
     {% if events | length > 0 %}
 
-        {% if config.reverseOrder %}
-            {% set events = events | reverse %}
-        {% endif %}
-
-        {% if config.maxEvents %}
-            {% set events = events.slice(0, config.maxEvents) %}
-        {% endif %}
-
         {% if config.carousel %}
 
             {# Progress bar #}
