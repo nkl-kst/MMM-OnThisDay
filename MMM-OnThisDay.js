@@ -18,6 +18,7 @@ const moduleDefinition = {
         // Carousel
         carousel: false,
         carouselInterval: 30, // 30 sec.
+        carouselIntervalWordFactor: 1, // 1 sec. (slow reading)
         carouselProgress: false,
 
         // Style
@@ -51,6 +52,11 @@ const moduleDefinition = {
      * Index of current event displayed in the carousel mode.
      */
     carouselIndex: -1,
+
+    /**
+     * Current event display duration, static or based on word count.
+     */
+    eventDisplayDuration: null,
 
     /**
      * Timer for the current displayed event in the carousel mode.
@@ -112,6 +118,7 @@ const moduleDefinition = {
             events: this.events,
             eventYears: this.eventYears,
             carouselIndex: this.carouselIndex,
+            eventDisplayDuration: this.eventDisplayDuration,
         };
     },
 
@@ -212,12 +219,16 @@ const moduleDefinition = {
             this.carouselIndex = 0;
         }
 
+        // Determine event duration
+        const eventText = this.events[this.carouselIndex];
+        this.eventDisplayDuration = this.getEventDisplayDuration(eventText);
+
         this.updateDom(this.config.animationSpeed * 1000);
 
         // Schedule next update
         this.carouselTimer = setTimeout(() => {
             this.updateCarousel();
-        }, this.config.carouselInterval * 1000);
+        }, this.eventDisplayDuration * 1000);
     },
 
     parseEventYears(events) {
@@ -239,6 +250,16 @@ const moduleDefinition = {
         }
 
         this.eventYears = parsedYears;
+    },
+
+    getEventDisplayDuration(eventText) {
+        // Use static value if set
+        if (this.config.carouselInterval !== 'auto') {
+            return this.config.carouselInterval;
+        }
+
+        const words = eventText.match(/\S+/g).length;
+        return words * this.config.carouselIntervalWordFactor;
     },
 };
 

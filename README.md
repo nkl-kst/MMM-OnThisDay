@@ -83,17 +83,18 @@ let config = {
 
 All options are optional so the module works out of the box.
 
-| Option             | Description                                                                                                          |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------- |
-| `animationSpeed`   | Duration of content refresh animation in seconds.<br><br>**Type:** `Number`<br>**Default:** `1`                      |
-| `updateInterval`   | Time between loading new events data in seconds.<br><br>**Type:** `Number`<br>**Default:** `3600` (1 hour)           |
-| `carousel`         | Show events in carousel mode (one event at a time).<br><br>**Type:** `Boolean`<br>**Default:** `false`               |
-| `carouselInterval` | Time between events in carousel mode in seconds.<br><br>**Type:** `Number`<br>**Default:** `30` (30 seconds)         |
-| `carouselProgress` | Display a progress indicator for carousel intervals.<br><br>**Type:** `Boolean`<br>**Default:** `false`              |
-| `maxEvents`        | Display up to the given number of events if supported.<br><br>**Type:** `Number`<br>**Default:** `null`              |
-| `reverseOrder`     | Display events in reversed order if supported.<br><br>**Type:** `Boolean`<br>**Default:** `false`                    |
-| `maxWidth`         | Max width of the displayed events content.<br><br>**Type:** `String`<br>**Default:** `400px`                         |
-| `textSize`         | CSS class to set the text size, use MagicMirror core classes here<br><br>**Type:** `String`<br>**Default:** `xsmall` |
+| Option                       | Description                                                                                                                                                         |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `animationSpeed`             | Duration of content refresh animation in seconds.<br><br>**Type:** `Number`<br>**Default:** `1`                                                                     |
+| `updateInterval`             | Time between loading new events data in seconds.<br><br>**Type:** `Number`<br>**Default:** `3600` (1 hour)                                                          |
+| `carousel`                   | Show events in carousel mode (one event at a time).<br><br>**Type:** `Boolean`<br>**Default:** `false`                                                              |
+| `carouselInterval`           | Time between events in carousel mode in seconds. Use `auto` for word count based intervals.<br><br>**Type:** `Number` or `String`<br>**Default:** `30` (30 seconds) |
+| `carouselIntervalWordFactor` | Used to calculate the event display duration when using `carouselInterval: 'auto'`.<br><br>**Type:** `Number`<br>**Default:** `1` (1 second                         |
+| `carouselProgress`           | Display a progress indicator for carousel intervals.<br><br>**Type:** `Boolean`<br>**Default:** `false`                                                             |
+| `maxEvents`                  | Display up to the given number of events if supported.<br><br>**Type:** `Number`<br>**Default:** `null`                                                             |
+| `reverseOrder`               | Display events in reversed order if supported.<br><br>**Type:** `Boolean`<br>**Default:** `false`                                                                   |
+| `maxWidth`                   | Max width of the displayed events content.<br><br>**Type:** `String`<br>**Default:** `400px`                                                                        |
+| `textSize`                   | CSS class to set the text size, use MagicMirror core classes here<br><br>**Type:** `String`<br>**Default:** `xsmall`                                                |
 
 ## Language
 
