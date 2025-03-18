@@ -25,7 +25,7 @@
             {% endif %}
 
             {# Carousel mode #}
-            <div>{{ events[carouselIndex] }}</div>
+            <div class="bright">{{ events[carouselIndex] }}</div>
 
             {# List of years #}
             {% if eventYears | length > 0 %}
@@ -44,7 +44,7 @@
         {% else %}
 
             {# Normal mode #}
-            <ul>
+            <ul class="bright">
                 {% for event in events %}
                     <li>{{ event }}</li>
                 {% endfor %}
