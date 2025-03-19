@@ -7,6 +7,8 @@
 
 const moduleDefinition = {
     defaults: {
+        language: null,
+
         // Intervals
         animationSpeed: 1, // 1 sec.
         updateInterval: 3600, // 60 min.
@@ -130,8 +132,9 @@ const moduleDefinition = {
         Log.info('MMM-OnThisDay starting...');
 
         // Check languages
-        if (WIKI_CSS_SELECTORS[config.language]) {
-            this.usedLanguage = config.language;
+        const configuredLanguage = this.config.language || config.language;
+        if (WIKI_CSS_SELECTORS[configuredLanguage]) {
+            this.usedLanguage = configuredLanguage;
         }
         Log.info(`Using language ${this.usedLanguage}.`);
     },

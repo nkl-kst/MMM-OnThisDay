@@ -85,6 +85,7 @@ All options are optional so the module works out of the box.
 
 | Option                       | Description                                                                                                                                                         |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `language`                   | Events language. If the language is set to `null` (default), the global Mirror language ist used.<br><br>**Type:** `String`<br>**Default:** `null`                  |
 | `animationSpeed`             | Duration of content refresh animation in seconds.<br><br>**Type:** `Number`<br>**Default:** `1`                                                                     |
 | `updateInterval`             | Time between loading new events data in seconds.<br><br>**Type:** `Number`<br>**Default:** `3600` (1 hour)                                                          |
 | `carousel`                   | Show events in carousel mode (one event at a time).<br><br>**Type:** `Boolean`<br>**Default:** `false`                                                              |
