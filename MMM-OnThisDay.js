@@ -168,14 +168,18 @@ const moduleDefinition = {
 
     handleEventsLoaded: function (payload) {
         // No data
-        if (payload.events.length <= 0) {
-            Log.warn('No events available.');
+        if (payload.length <= 0) {
+            Log.warn('No events available for language ' + this.usedLanguage);
             return;
         }
 
         // Set content
-        this.title = payload.title;
-        this.events = payload.events;
+        this.title = new Date().toLocaleDateString(this.usedLanguage, {
+            day: 'numeric',
+            month: 'long',
+        });
+
+        this.events = payload;
 
         // Apply reverse config option
         if (this.config.reverseOrder) {
@@ -196,8 +200,8 @@ const moduleDefinition = {
                 clearTimeout(this.carouselTimer);
             }
 
-            // Parse years from events
-            this.parseEventYears(this.events);
+            // Prepare event years
+            this.eventYears = this.events.map((event) => event.year);
 
             this.updateCarousel();
             return;
@@ -223,7 +227,7 @@ const moduleDefinition = {
         }
 
         // Determine event duration
-        const eventText = this.events[this.carouselIndex];
+        const eventText = this.events[this.carouselIndex].text;
         this.eventDisplayDuration = this.getEventDisplayDuration(eventText);
 
         this.updateDom(this.config.animationSpeed * 1000);
@@ -232,27 +236,6 @@ const moduleDefinition = {
         this.carouselTimer = setTimeout(() => {
             this.updateCarousel();
         }, this.eventDisplayDuration * 1000);
-    },
-
-    parseEventYears(events) {
-        // Finds the year at the beginning of a text, followed by a separator and text
-        const yearRegex = /^\s*(\d{0,4})\s[-–:]\s.+$/;
-
-        const parsedYears = [];
-        for (const event of events) {
-            // Cancel if one year couldn't be parsed
-            const yearMatch = yearRegex.exec(event);
-            if (yearMatch === null) {
-                Log.info("Couldn't parse event year for " + event);
-
-                this.eventYears = [];
-                return;
-            }
-
-            parsedYears.push(yearMatch[1]);
-        }
-
-        this.eventYears = parsedYears;
     },
 
     getEventDisplayDuration(eventText) {

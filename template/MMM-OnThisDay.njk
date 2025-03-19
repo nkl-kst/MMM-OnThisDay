@@ -25,7 +25,8 @@
             {% endif %}
 
             {# Carousel mode #}
-            <div class="bright">{{ events[carouselIndex] }}</div>
+            {% set event = events[carouselIndex] %}
+            <div class="bright">{{ event.year }}: {{ event.text }}</div>
 
             {# List of years #}
             {% if eventYears | length > 0 %}
@@ -46,7 +47,7 @@
             {# Normal mode #}
             <ul class="bright">
                 {% for event in events %}
-                    <li>{{ event }}</li>
+                    <li>{{ event.year }}: {{ event.text }}</li>
                 {% endfor %}
             </ul>
 

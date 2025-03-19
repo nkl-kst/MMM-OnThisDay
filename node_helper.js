@@ -6,18 +6,15 @@
  */
 
 const NodeHelper = require('node_helper');
-const { JSDOM } = require('jsdom');
 
-const HtmlFetcher = require('./src/HtmlFetcher');
-const HtmlParser = require('./src/HtmlParser');
+const WikimediaApiFetcher = require('./src/WikimediaApiFetcher');
 
 module.exports = NodeHelper.create({
-    htmlFetcher: null,
-    htmlParser: null,
+    wikimediaApiFetcher: null,
 
-    start: function (htmlFetcher, htmlParser, logger) {
-        this.htmlFetcher = htmlFetcher || new HtmlFetcher();
-        this.htmlParser = htmlParser || new HtmlParser(JSDOM);
+    start: function (wikimediaApiFetcher, logger) {
+        this.wikimediaApiFetcher =
+            wikimediaApiFetcher || new WikimediaApiFetcher();
         this.logger = logger || require('logger');
     },
 
@@ -36,10 +33,6 @@ module.exports = NodeHelper.create({
     loadEvents: async function (language) {
         this.logger.log('Load events ...');
 
-        // Get HTML
-        const html = await this.htmlFetcher.fetch(language);
-
-        // Return parsed data
-        return this.htmlParser.parse(html, language);
+        return this.wikimediaApiFetcher.fetch(language);
     },
 });
