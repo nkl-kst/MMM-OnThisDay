@@ -19,9 +19,6 @@
         "test": "nyc mocha test/unit --recursive",
         "test-functional": "mocha test/functional --recursive"
     },
-    "dependencies": {
-        "jsdom": "^22.1.0"
-    },
     "devDependencies": {
         "mocha": "^10.2.0",
         "nyc": "^15.1.0",
