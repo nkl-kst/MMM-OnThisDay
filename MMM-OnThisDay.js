@@ -43,7 +43,7 @@ const moduleDefinition = {
     /**
      * Separate events parsed from the HTML data.
      */
-    events: null,
+    events: [],
 
     /**
      * Event years for carousel model.
@@ -73,7 +73,6 @@ const moduleDefinition = {
     getScripts: function () {
         // prettier-ignore
         return [
-            this.file('src/WikiCssSelectors.js'),
             this.file('src/ProgressUpdater.js'),
         ];
     },
@@ -131,11 +130,8 @@ const moduleDefinition = {
     start: function () {
         Log.info('MMM-OnThisDay starting...');
 
-        // Check languages
-        const configuredLanguage = this.config.language || config.language;
-        if (WIKI_CSS_SELECTORS[configuredLanguage]) {
-            this.usedLanguage = configuredLanguage;
-        }
+        // Determine languages
+        this.usedLanguage = this.config.language || config.language;
         Log.info(`Using language ${this.usedLanguage}.`);
     },
 

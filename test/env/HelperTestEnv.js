@@ -15,14 +15,13 @@ const NodeHelperFake = {
     },
 };
 
-const htmlFetcherMock = {
+const wikimediaApiFetcherMock = {
     fetch: (language) => {
-        return `
-            <div id="mp-otd">
-                <p>test title for ${language}</p>
-                <ul><li>test events for ${language}</li></ul>
-            </div>
-		`;
+        return [
+            {
+                text: `test events for ${language}`,
+            },
+        ];
     },
 };
 
@@ -38,7 +37,7 @@ const nodeHelperDefinition = proxyquire('../../node_helper', {
 module.exports = function () {
     const nodeHelper = Object.assign({}, nodeHelperDefinition);
 
-    nodeHelper.start(htmlFetcherMock, null, loggerMock);
+    nodeHelper.start(wikimediaApiFetcherMock, loggerMock);
 
     // Fake inherited methods
     nodeHelper.sendSocketNotification = sinon.fake();

@@ -38,10 +38,11 @@ describe('node_helper', () => {
             // Assert
             assert.ok(helper.sendSocketNotification.calledOnce);
             assert.ok(
-                helper.sendSocketNotification.calledWith('EVENTS_LOADED', {
-                    title: 'test title for en',
-                    events: ['test events for en'],
-                }),
+                helper.sendSocketNotification.calledWith('EVENTS_LOADED', [
+                    {
+                        text: 'test events for en',
+                    },
+                ]),
             );
         });
     });
@@ -52,10 +53,11 @@ describe('node_helper', () => {
             const events = await helper.loadEvents('en');
 
             // Assert
-            assert.deepStrictEqual(events, {
-                title: 'test title for en',
-                events: ['test events for en'],
-            });
+            assert.deepStrictEqual(events, [
+                {
+                    text: 'test events for en',
+                },
+            ]);
         });
     });
 });

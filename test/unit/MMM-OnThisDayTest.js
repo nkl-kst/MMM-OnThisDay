@@ -113,17 +113,6 @@ describe('MMM-OnThisDay', () => {
             // Assert
             assert.strictEqual(module.usedLanguage, 'de');
         });
-
-        it('should set fallback language if user language is not supported', () => {
-            // Arrange
-            config.language = 'not supported';
-
-            // Act
-            module.start();
-
-            // Assert
-            assert.strictEqual(module.usedLanguage, 'en');
-        });
     });
 
     describe('notificationReceived', () => {
@@ -153,47 +142,46 @@ describe('MMM-OnThisDay', () => {
     describe('socketNotificationReceived', () => {
         it('should do nothing on unknown notifications', () => {
             // Arrange
-            const payload = {
-                title: 'Should not appear',
-                events: 'Should not appear',
-            };
+            const payload = [
+                {
+                    text: 'Should not appear',
+                },
+            ];
 
             // Act
             module.socketNotificationReceived('UNKNOWN_NOTIFICATION', payload);
 
             // Assert
             assert.strictEqual(module.title, null);
-            assert.strictEqual(module.events, null);
+            assert.strictEqual(module.events.length, 0);
         });
 
         it('should do nothing if no events were found', () => {
             // Arrange
-            const payload = {
-                title: 'Should not appear',
-                events: [],
-            };
+            const payload = [];
 
             // Act
             module.socketNotificationReceived('EVENTS_LOADED', payload);
 
             // Assert
-            assert.strictEqual(module.title, null);
-            assert.strictEqual(module.events, null);
+            assert.strictEqual(module.events.length, 0);
         });
 
         it('should set title and events', () => {
             // Arrange
-            const payload = {
-                title: 'Test title',
-                events: 'Test events',
-            };
+            const payload = [
+                {
+                    text: 'Test event',
+                },
+            ];
 
             // Act
             module.socketNotificationReceived('EVENTS_LOADED', payload);
 
             // Assert
-            assert.strictEqual(module.title, 'Test title');
-            assert.strictEqual(module.events, 'Test events');
+            assert.strictEqual(module.title, 'January 1');
+            assert.strictEqual(module.events.length, 1);
+            assert.strictEqual(module.events[0].text, 'Test event');
         });
     });
 

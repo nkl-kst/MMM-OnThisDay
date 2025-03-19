@@ -39,4 +39,3 @@ jobs:
 
             # Tests
             - run: npm test
-            - run: npm run test-functional

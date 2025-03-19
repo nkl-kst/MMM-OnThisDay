@@ -24,9 +24,6 @@ Log = {
 // Load module definition
 const moduleDefinition = require('../../MMM-OnThisDay');
 
-// Load Wiki CSS selectors
-WIKI_CSS_SELECTORS = require('../../src/WikiCssSelectors');
-
 // Export new module with function mocks/fakes
 module.exports = function () {
     // Create module
