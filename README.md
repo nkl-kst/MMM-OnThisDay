@@ -102,6 +102,16 @@ All options are optional so the module works out of the box.
 The global configured language of your MagicMirror is used by default in this module. Use the `language` config option to
 change it. See the Wikimedia Feed API reference for [supported languages](https://api.wikimedia.org/wiki/Feed_API/Language_support#Daily_featured_article).
 
+## Styling
+
+MM wraps the module content in a `div` with the module name as a CSS class, e.g. `<div class="MMM-OnThisDay"> ... </div>`. So you could just add something like this to your `css/custom.css`:
+
+```css
+.MMM-OnThisDay {
+    background: rgba(0, 0, 0, 0.35);
+}
+```
+
 ## Problems
 
 If you have any problems or questions, feel free to open an issue. There are many possible improvements for this module so please let me know if you miss something.
